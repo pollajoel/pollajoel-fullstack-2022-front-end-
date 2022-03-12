@@ -1,0 +1,21 @@
+.searchbar__container{
+    height: 30px;
+    width: 100%;
+
+    .SearchForm__container{
+        border-radius: 30px;
+        border: 1px solid lightgray;
+        padding: 5px 10px 5px 10px;
+        background: #fff;
+        input{
+            border: 0px;
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+
+    .form__container{
+        display: flex;
+    }
+}

@@ -1,0 +1,76 @@
+.homemenu__container{
+    border-bottom: 2px solid #fff;
+    display: flex;
+    height: 99px;
+    margin-bottom: 50px;
+    background: #fff;
+    box-shadow: 0 0 20px -2px rgb(0 0 0 / 25%);
+
+
+    .logo{
+        cursor:pointer;
+    }
+
+    .mainmenu__list {
+        .nav__link{text-decoration: none;}
+        .currentUserPicture{
+            text-align: center;
+            span{
+               img{
+                        border: 2px solid lightgray;
+                    }
+            }
+        }
+        width: 150px;
+        .secondmenu__list{
+           
+            
+            display: none;
+            border: 1px solid lightgrey;
+            margin-top: 39px;
+            width: 180px;
+            background-color: #fff;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        &:hover{
+            .secondmenu__list{
+                display: block;
+                animation-duration: 1s;
+                -webkit-animation-duration: 1s;
+                animation-delay: 0s;
+                animation-name: bounceIn;
+                -moz-animation-name: bounceIn;
+                -webkit-animation-name: bounceIn;
+                border-radius: 6px;
+                border: 1px solid #eee;
+                transition: all .2s ease-in-out;
+                text-align: left;
+                li:last-child{
+                    border-bottom: 0px;
+                }
+                li{
+                    border-bottom: 1px solid #eee;
+                    padding: 10px 10px 20px 20px;
+                    a{
+                        text-align: none;
+                    }
+                }
+            }
+        }
+    }
+    .home__nav{
+        position: absolute;
+        top: 15px;
+        height: 100px;
+        right: 60px;
+        cursor:pointer;
+    }
+
+    .profilImage{
+        border-radius: 50px;
+        border: 3px solid red;
+    }
+    
+}

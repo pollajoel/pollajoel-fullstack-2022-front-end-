@@ -1,3 +1,7 @@
+
+@import "./utils/variables.scss";
+@import "./utils/mixins.scss";
+
 @import "./base/base.scss";
 @import "./base/fonts.scss";
 @import "./base/reset.scss";
@@ -5,6 +9,7 @@
 @import "./theme/button.scss";
 @import "./theme/spacing.scss";
 @import "./theme/title.scss";
-
-@import "./utils/variables.scss";
-@import "./utils/mixins.scss";
+@import '~pretty-checkbox/src/pretty-checkbox.scss';
+body {
+    color:gray;
+}

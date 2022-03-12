@@ -1,0 +1,27 @@
+.container__wrapper{
+    margin: 0;
+    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+
+    .user__image{margin-top: 47px;}
+    .container{
+        &__menu{
+            width: 3%;
+        }
+        &__content{
+            width: 65%;
+        }
+        &__secondsidebar{
+            width: 25%;
+            border-left: 1px solid #e6e6e6;
+            height: 100vh;
+            padding: 20px;
+            .profil__button{
+                display: flex;
+                justify-content:space-between;
+                margin: 10px 0px 25px 0px;
+            }
+        }
+    }
+}

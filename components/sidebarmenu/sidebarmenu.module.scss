@@ -1,0 +1,58 @@
+.sidebar__container{
+    display: flex;
+    height: 100vh;
+    border-right: 1px solid rgba(230, 230, 230, 1);
+    width: 100%;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0px 9px 0px 18px;
+
+    .nav{
+        &__nav{
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        &__logo{
+            margin: 49px 0px 71px 0px;
+        }
+
+        &__item{
+            color: #000;
+            &:hover{
+                color:gray
+            }
+            &:active{
+                color:gray;
+                svg{
+                    color: rgb(59, 59, 59);
+                }
+            }
+            &:visited{
+                color:gray;
+            }
+        }
+        &__link{
+            margin-bottom: 30px;
+            cursor: pointer;
+            height: 15px;
+            width: 89%;
+            padding: 5px;
+            border-right: 4px solid transparent;
+            svg{
+                font-size: larger;
+            }
+            &:hover{
+                border-right: 4px solid gray;
+                &:active{
+                    color: red;
+                }
+            }
+
+
+        }
+
+    }
+}

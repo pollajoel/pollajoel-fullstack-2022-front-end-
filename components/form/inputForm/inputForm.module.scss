@@ -1,0 +1,39 @@
+.error__message{ color:red;}
+.input__container {
+    border: 1px solid rgba(230, 230, 230, 1);
+    width: 100%;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 20px 0px 4px 0px;
+    
+    display: flex;
+
+    .icon__verified{color:green;}
+    .icon__error{color:red;}
+    .icon__container{
+        width: 10%;
+    }
+
+    .formInpunt__wrapper{
+        width: 90%;
+        .wrapper{
+            &__label{
+                text-transform: capitalize;
+            }
+            &__input{
+                
+                input{
+                    &:focus{
+                        outline:none;
+                    }
+                    border: 0px;
+                    height: 31px;
+                    width: 70%;
+                }
+            }
+        }
+    }
+
+
+   
+}

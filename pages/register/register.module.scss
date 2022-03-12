@@ -1,0 +1,64 @@
+.login__wrapper{
+    margin:0px;
+    display: flex;
+    flex-wrap: wrap;
+
+    .remenber__me{
+            display: flex;
+            padding-top: 29px;
+            .forgetpass{
+                width: 50%;
+                margin-left: 72px;
+            }
+            .link{
+                text-decoration: none;
+                color: #000;
+            }
+        }
+    .loginButton{
+        margin-top: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        &__createaccount{
+            width: 59%;
+        }
+    }
+    .logincontainer{
+        width: 35%;
+    }
+    .login{
+        &__image{
+            background-image: url("../../public/uploads/bg.jpg");
+            height: 100vh;
+            background-position: center top;
+            background-size: cover;
+            width: 60%;
+            padding-bottom: 20px;
+        }
+
+        &__form{}
+
+        &__logo{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        &__title{
+            width: 100%;
+            h1{
+                font-size: 35px;
+            }
+            p{
+                margin-top: 20px;
+                line-height: 1.5;
+            }
+        }
+
+
+    }
+
+
+}
