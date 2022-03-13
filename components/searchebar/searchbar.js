@@ -18,7 +18,7 @@ export default function Searchbar() {
                 />  
               </label>
             </div>
-            <div><input type="text" id="searchvalue"></input></div>
+            <div><input type="text" id="searchvalue" placeholder='Recherchez ici ...'></input></div>
            <div></div>
           </div>
         </form>

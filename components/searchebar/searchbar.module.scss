@@ -1,16 +1,22 @@
 .searchbar__container{
     height: 30px;
     width: 100%;
-
+    
+    svg{
+        font-size: medium;
+        color: #3b3b3b;
+    }
     .SearchForm__container{
         border-radius: 30px;
-        border: 1px solid lightgray;
+        border: 1px solid #e6e6e6;
         padding: 5px 10px 5px 10px;
-        background: #fff;
+        background: #e6e6e6;
         input{
             border: 0px;
+            background-color: #e6e6e6;
             &:focus{
                 outline: none;
+                background-color: #e6e6e6;
             }
         }
     }

@@ -9,7 +9,41 @@
 .homemenu__container{
   border: 1px solid red;
   margin-bottom: 15px;
+  padding: 20px;
 }
 
 .main__wrapper{
+  padding: 20px;
 }
+
+.projectsummary{
+  display: flex;
+  padding: 0px 0px 0px 0px;
+  justify-content: space-around;
+}
+
+.taskSelector{
+  display: flex;
+  padding: 40px 0px 0px 52px;
+}
+
+.statistiques{
+  display: flex;
+  &__pichart{
+    width: 65%;
+    margin-left: 30px;
+    padding-top: 5px;
+  }
+
+  &__camenbert{
+    width: 50%;
+    height: 30px;
+  }
+}
+.projectSDiagramment {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  font-size: smaller;
+  font-weight: bold;
+}
+

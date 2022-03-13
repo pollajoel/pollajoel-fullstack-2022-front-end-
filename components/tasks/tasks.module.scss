@@ -1,0 +1,83 @@
+
+.task__container{
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    display: flex;
+    padding: 7px;
+    align-items: center;
+    margin-bottom: 10px;
+    .description{
+
+        .container__title{
+            display: flex;
+            .menu__box{
+                position: absolute;
+                margin-left: 18%;
+                .Select__menu{
+                    .nav__link{
+                        cursor: pointer;
+                        svg{
+                            color: #e6e6e6;
+                            font-size: medium;
+                        }
+                        .edit__Menu{
+                            display: none;
+                            position: absolute;
+                            margin-left: -72px;
+                            background: #e6e6e6;
+                            top: 2px;
+                            border: 1px solid #e6e6e6;
+                            font-size: 12px;
+                            padding: 8px;
+                            border-radius: 6px;
+                            li{
+                                padding: 5px;
+                            }
+                        }
+                        &:hover{
+                            .edit__Menu{
+                                display: block;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        &__title{
+            border-radius: 5px;
+            border: 1px solid #e6e6e6;
+            padding: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+        }
+
+        &__project{
+            font-size: 16px;
+            font-weight: 700;
+            width: 100%;
+            padding: 20px 0px 10px 0px;
+            cursor: pointer;
+        }
+    }
+
+    .times__content{
+        display: flex;
+        width: 100%;
+        .start__date{
+            font-size: 12px;
+            width: 100px;
+        }
+
+        .end__date{
+            font-size: 12px;
+            width: 100px
+        }
+    }
+}
+
+.picture__container{
+    position: absolute;
+    margin-left: 17%;
+    margin-top: -10px;
+}

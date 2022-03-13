@@ -1,0 +1,35 @@
+.taks__bar{
+    display: flex;
+    width: 98%;
+    border-bottom: 1px solid #e6e6e6;
+    button{
+        background: transparent;
+        border: 0px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+}
+
+.second__button{
+    margin-left: 41px;
+}
+
+.activeBar{
+    height: 4px;
+    background: #000;
+}
+
+.task__bar__select{
+    width: 100%
+}
+
+
+.task__describe{
+    padding: 20px 0px 0px 0px;
+}
+
+.boutonaddContainer{
+    position: absolute;
+    left: 63%;
+    margin-top: -23px;
+}

@@ -1,24 +1,56 @@
 import React from 'react'
-import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
-import Searchbar from '../../components/searchebar/searchbar'
 import Sidebarmenu from '../../components/sidebarmenu/sidebarmenu'
 import styles from './Homelayout.module.scss'
 import Image from 'next/image'
 import defaultImage from "../../public/uploads/user.png"
+import Loginmessage from '../../components/loginmessage/loginmessage'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {faBell, faChevronDown, faTasks} from '@fortawesome/free-solid-svg-icons'
+import Tasks from '../../components/tasks/tasks'
+import Boutonwhite from '../../components/bouton/boutonwhite/boutonwhite'
+import Title from '../../components/title/title'
+
 
 export default function Homelayout({children}) {
   return (
     <div className={styles.container__wrapper}>
+
       <div className={styles.container__menu}> <Sidebarmenu/> </div>
-      <div className={styles.container__content}> <main>{children}</main> </div>
+      <div className={styles.container__content}> 
+        <Loginmessage user="user"></Loginmessage>
+        <div>{children}</div> 
+      </div>
       <div className={styles.container__secondsidebar}>
-          <div className={styles.profil__button}>
-              <div><Boutonblue name="Consulter mon profil"/></div>
-              <div>déconnexion</div>
-          </div>
-          <div> <Searchbar></Searchbar></div>
+          
           <div className={styles.user__image}>
-            <Image src={defaultImage} width={70} height={70}/>
+            <div className={styles.menu__container} style={{borderRadius: '50%', overflow: 'hidden', border:'1px solid #e6e6e6'}}>
+                <Image src={defaultImage} width={40} height={40}/>
+                <ul className={styles.user__menu}>
+                    <li> 
+                      <span className={styles.chevron__size}>UserName <FontAwesomeIcon icon={faChevronDown} size="2x"/></span>
+                      <p>UserLogin</p>
+                      <ul className={styles.menu__contain}>
+                          <li>Mon profil</li>
+                          <li>Déconnexion</li>
+                      </ul>
+                    </li>
+                </ul>
+            </div>
+            <div className={styles.notifications__box}>
+              <div>
+                <FontAwesomeIcon  icon={faBell} size="2x"/>
+              </div>    
+            </div>
+          </div>
+          <Title title="Tâches en cours"/>
+          <div className={styles.taxk__container}>
+              <Tasks></Tasks>
+              <Tasks></Tasks>
+              <Tasks></Tasks>
+              <Tasks></Tasks>
+          </div>
+          <div>
+              <Boutonwhite name="Voir plus.." icon={faTasks}></Boutonwhite>
           </div>
       </div>
     </div>

@@ -12,4 +12,6 @@
 @import '~pretty-checkbox/src/pretty-checkbox.scss';
 body {
     color:gray;
+    font-family: $mainFont;
+    overflow: hidden;
 }

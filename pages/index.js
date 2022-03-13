@@ -1,17 +1,27 @@
 import styles from '../styles/Home.module.scss'
-import Header from "../components/bodycomponent/Header";
 import HomeLayout from '../layouts/Home/Homelayout'
-import Sidebarmenu from '../components/sidebarmenu/sidebarmenu';
-
+import Projectssummary from '../components/projectsummary/projectssummary'
+import {faEdit, faCheck, faProjectDiagram} from '@fortawesome/free-solid-svg-icons'
 export default function Home() {
   return (
-    <div className="home__container">
-    <Header title ="Home page"/>
-      <main>
-        <div className={styles.projectsummary}></div>
-      </main>
-      <footer className={styles.footer}>
-      </footer>
+    <div className={styles.home__container}>
+        <div className={styles.projectsummary}>
+          <Projectssummary 
+            Icon={faEdit}
+            Numbers={12}
+            description="projects en cours"
+            />
+          <Projectssummary 
+            Icon={faCheck}
+            Numbers={12}
+            description="projects complets"
+          />
+          <Projectssummary 
+            Icon={faProjectDiagram} 
+            Numbers={12}
+            description="Nombres de projets"
+          />
+        </div>
     </div>
   )
 }

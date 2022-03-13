@@ -3,15 +3,18 @@
     border: 1px solid rgba(230, 230, 230, 1);
     width: 100%;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
     margin: 20px 0px 4px 0px;
     
     display: flex;
 
-    .icon__verified{color:green;}
-    .icon__error{color:red;}
+    .icon__verified{color:green; font-size: larger;}
+    .icon__error{color:red; font-size: larger;}
     .icon__container{
         width: 10%;
+        svg{
+            font-size: larger;
+        }
     }
 
     .formInpunt__wrapper{
@@ -27,7 +30,6 @@
                         outline:none;
                     }
                     border: 0px;
-                    height: 31px;
                     width: 70%;
                 }
             }

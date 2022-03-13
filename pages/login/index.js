@@ -36,7 +36,7 @@ export default function index() {
                         id="email"
                         icon={faUser}
                         placeholder=""
-                        error={false}
+                        error={true}
                         erromessage="adresse incorrecte"
                     />
 

@@ -1,0 +1,19 @@
+.loginmessage__wrapper {
+
+    height: 90px;
+    border-bottom: 1px solid  #e6e6e6;
+    margin-bottom: 50px;
+    align-items: center;
+    display: flex;
+
+    .name__block {
+        width: 75%;
+        h1{
+            font-size: 25px;
+        }
+        p{
+            font-weight: 100;
+            line-height: 26px;
+        }
+    }
+}
