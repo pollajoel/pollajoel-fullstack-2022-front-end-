@@ -8,12 +8,11 @@ export default function Sidebarmenu() {
 
     const menu =[
         {icon: faHomeAlt, link:"/"},
-        {icon: faPieChart, link:"/statistics"},
         {icon: faList, link:"/projects"},
         {icon: faCalendarTimes, link:"calendar"},
         {icon: faUsers, link:"/users"},
         {icon: faCog, link:"/parameters"},
-        {icon: faTasks, link:"/tasks"}
+        //{icon: faTasks, link:"/tasks"}
     
     ]
   return (

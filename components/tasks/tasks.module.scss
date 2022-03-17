@@ -19,11 +19,12 @@
                         svg{
                             color: #e6e6e6;
                             font-size: medium;
+                            margin-left: 247px;
                         }
                         .edit__Menu{
                             display: none;
                             position: absolute;
-                            margin-left: -72px;
+                            margin-left: 252px;
                             background: #e6e6e6;
                             top: 2px;
                             border: 1px solid #e6e6e6;
@@ -53,8 +54,8 @@
         }
 
         &__project{
-            font-size: 16px;
-            font-weight: 700;
+            font-weight: 600;
+            font-size: 0.85rem;
             width: 100%;
             padding: 20px 0px 10px 0px;
             cursor: pointer;
@@ -78,6 +79,6 @@
 
 .picture__container{
     position: absolute;
-    margin-left: 17%;
+    margin-left: 84%;
     margin-top: -10px;
 }

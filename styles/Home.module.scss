@@ -47,3 +47,19 @@
   font-weight: bold;
 }
 
+.stat__component{
+  display: flex;
+    .doughnut{
+      width: 20%;
+      border:1px solid red;
+      position: absolute;
+      margin-left: 5%;
+    }
+
+    .piechart{
+      width: 40%;
+      height: 30px;
+     margin-left: 40%;
+     position: absolute;
+    }
+}

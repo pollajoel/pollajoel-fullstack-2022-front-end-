@@ -1,0 +1,11 @@
+.container__wrapper{
+    display: flex;
+    justify-content: space-around;
+    .doughnutchart{
+        width: 100%;
+        border: 1px solid  #e6e6e6;
+    }
+    .piechart{
+        width: 60%;
+    }
+}

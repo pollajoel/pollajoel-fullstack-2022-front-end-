@@ -1,0 +1,21 @@
+.project__card__wrapper {
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
+    padding: 5px;
+    height: 100px;
+    border-radius: 1px;
+    margin-bottom: 12px;
+    cursor: pointer;
+
+    .project__name{
+        font-size: 12px;
+        width: 100%;
+        
+    }
+    .project__containdata{
+        position: relative;
+        font-size: 10px;
+        margin-top: 62px;
+    }
+}

@@ -16,7 +16,7 @@ export default function InputForm(props) {
             <div className={styles.formInpunt__wrapper}>
                 <div className={styles.wrapper__label}>
                     <label htmlFor={props.id}>
-                        {props.name}
+                        {props.label}
                     </label>
                 </div>
                 <div className={styles.wrapper__input}>

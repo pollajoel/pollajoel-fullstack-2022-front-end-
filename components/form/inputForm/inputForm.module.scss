@@ -20,8 +20,10 @@
     .formInpunt__wrapper{
         width: 90%;
         .wrapper{
+            cursor: pointer;
             &__label{
                 text-transform: capitalize;
+                
             }
             &__input{
                 

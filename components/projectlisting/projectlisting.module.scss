@@ -1,0 +1,40 @@
+.projects__container{
+    background-color: whitesmoke;
+    border-radius: 1px;
+    padding: 4px;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+
+    .title{
+        padding: 8px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+    .statuts__name{
+        padding: 4px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+    .statut__colum{
+        width: 400px;
+        margin-right: 10px;
+    }
+    
+
+    .project__form{
+        position: absolute;
+        background-color: #fff;
+        border: 1px solid #fff;
+        width: 300px;
+        padding: 46px;
+        z-index: 10;
+        box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
+        border-radius: 2px;
+
+    }
+}
