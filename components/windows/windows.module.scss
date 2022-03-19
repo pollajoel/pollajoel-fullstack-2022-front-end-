@@ -1,0 +1,77 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+}
+.form__container{
+    width: 85%;
+    height: 20px;
+    margin-bottom: 40px;
+}
+
+.form__wrapper{
+    width: 100%;
+}
+.modal {
+    background-color: #FFF;
+    border-radius: 2px;
+    margin: 20px 0 80px;
+    min-height: 550px;
+    width: 300px;
+    outline: none;
+    padding: 20px;
+    border: 3px solid whitesmoke;
+    transition: 2s max-height 0.3s;
+}
+
+
+.close_btn_ctn {
+    display: flex;
+   
+}
+
+.close_btn {
+    height: 40px;
+    width: 35px;
+    font-size: 20px;
+    color: #031D2C;
+    border: none;
+    cursor: pointer;
+}
+
+.close_btn:hover {
+    background-color: #DCDCDC;
+}
+
+.pogress__bar{
+    border: 1px solid #fff;
+    width: 93%;
+    height: 17px;
+    margin-bottom: 11px;
+    background-color: #DCDCDC;
+    .pogress__content{
+        width: 80%;
+        height: 16px;
+        background-color: green;
+    }
+}
+
+.percentage__container{
+    width: 87%;
+    .percentage__values{
+        margin-left: 80%;
+        background-color: #fff;
+        font-weight: 700;
+    }
+
+}
+
+.statut__container{
+    
+    margin-top: 5px;
+}

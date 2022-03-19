@@ -1,0 +1,14 @@
+.form__content{
+    margin:8px 0px 8px 0px;
+
+    label{
+        font-size:12px;
+    }
+    input{
+        border: none;
+        border-bottom: 1px solid whitesmoke;
+        &:focus{
+            outline: none;
+        }
+    }
+}

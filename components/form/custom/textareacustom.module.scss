@@ -1,0 +1,8 @@
+.custom__textarea{
+
+    border :1px solid whitesmoke;
+    resize: none;
+    &:focus{
+        outline: none
+    };
+}

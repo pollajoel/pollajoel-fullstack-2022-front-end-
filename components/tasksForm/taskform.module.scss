@@ -1,0 +1,18 @@
+.project__form{
+    position: absolute;
+    background-color: transparent;
+    width: 100%;
+    z-index: 10;
+    height: 100vh;
+    .form__content{
+        background-color: #fff;
+        border: 1px solid #fff;
+        width: 300px;
+        padding: 46px;
+        z-index: 10;
+        border-radius: 2px;
+        
+    }
+}
+
+

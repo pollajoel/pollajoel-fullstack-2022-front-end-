@@ -2,15 +2,15 @@ import React, {useState, useEffect} from 'react'
 import Projectcards from '../projectcards/projectcards';
 import styles from './projectlisting.module.scss';
 import { DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd';
-import EditprojectsForm from '../editForm/editprojectsForm';
-
 export default function Projectlisting(props) {
   const [winReady, setwinReady] = useState(false);
   
+
       useEffect(() => {
           setwinReady(true);
         }, []);
   
+        
         const onDragEnd = (result, columns, setColumns) => {
           if (!result.destination) return;
           const { source, destination } = result;
@@ -47,23 +47,17 @@ export default function Projectlisting(props) {
             });
           }
         };
-        
+
     const [columns, setColumns] = useState(props.statutLists);
     
   return (
     <div className={styles.projects__container}>
-
-      <div className={styles.project__form}>
-        <EditprojectsForm/>
-      </div>
-        
-
-
       {
         winReady?<DragDropContext onDragEnd={result=>onDragEnd(result, columns, setColumns )}>
             { 
               
               Object.entries(columns).map(([id, column])=>{
+                var columColor = column.status_color;
               return (<div key={id}><div className={styles.title}>{column.name}</div>
               <Droppable droppableId={id.toString()} key={id}> 
               { (provided, snapshot) => {
@@ -72,10 +66,10 @@ export default function Projectlisting(props) {
                         ref={provided.innerRef}
                         style={{ background:snapshot.isDraggingOver? 'lightblue':'lightgray',
                             
-                            width: 250,
-                            height: '950px',
-                            border: '1px solid #fff',
-                          padding: '4px',
+                            width: '150px',
+                            height: 'auto',
+                            border: '2px solid #fff',
+                            padding: '6px',
                             minheight:'950px'
                       }}
                     >
@@ -102,7 +96,7 @@ export default function Projectlisting(props) {
                                      }}
                                    >  
                                    {
-                                    <Projectcards item={item} />
+                                    <Projectcards item={item}  statutstate={columColor}/>
                                    }
                                    
                                    </div>  

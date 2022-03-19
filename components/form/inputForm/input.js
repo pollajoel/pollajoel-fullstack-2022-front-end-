@@ -25,7 +25,8 @@ export default function InputForm(props) {
                         name={props.name}
                         id={props.id}
                         placeholder={props.placeholder}
-                        
+                        onChange={props.onChange}
+                        value={props.value}
                     />
                     {
                      props.success?

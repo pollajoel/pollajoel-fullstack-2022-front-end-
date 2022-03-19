@@ -46,6 +46,7 @@
             }
             &:hover{
                 border-right: 4px solid gray;
+                .second__menu{display: block;}
                 &:active{
                     color: red;
                 }
@@ -59,7 +60,29 @@
                 }
             }
 
+            .second__menu{
+                display: none;
+            }
+
+            
+
         }
 
+    }
+}
+
+
+.second__menu{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    position: absolute;
+    height: 50px;
+    border: 1px solid red;
+    padding: 10px;
+    background-color: #FFF;
+    z-index: 10;
+    li{
+        padding-top: 5px;
     }
 }

@@ -11,7 +11,7 @@ export default function Sidebarmenu() {
         {icon: faList, link:"/projects"},
         {icon: faCalendarTimes, link:"calendar"},
         {icon: faUsers, link:"/users"},
-        {icon: faCog, link:"/parameters"},
+        {icon: faCog, link:"/parametres"},
         //{icon: faTasks, link:"/tasks"}
     
     ]
@@ -33,8 +33,19 @@ export default function Sidebarmenu() {
                                     pull="left"
                                     size="2x"
                                 />
+                            
+
+
                             </a>
                         </Link>
+                        {
+                            item.link=="/parametres"?
+                            <ul className={styles.second__menu}>
+                                <li>Profil</li>
+                                <li>Tâches</li>
+                            </ul>:null
+                        }
+
                     </li>)
                 }
 

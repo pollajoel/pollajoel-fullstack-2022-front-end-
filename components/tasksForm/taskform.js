@@ -4,9 +4,9 @@ import {faCalendarPlus, faProjectDiagram} from '@fortawesome/free-solid-svg-icon
 import TextareaForm from '../form/textarea/textareaForm';
 import {faPlus, faEdit} from '@fortawesome/free-solid-svg-icons'
 import Boutonwhite from '../bouton/boutonwhite/boutonwhite';
-import styles from "./editprojectsForm.module.scss"
+import styles from "./taskform.module.scss"
 
-export default function ditprojectsForm(props) {
+export default function TaskForm(props) {
 
  const [formState, SetFormState]=useState({
     title: props.title || "",
@@ -34,7 +34,6 @@ export default function ditprojectsForm(props) {
             <form id="create-course-form">
                 <div>
                     <InputForm 
-                    
                     name="title"
                     error={true}
                     id="title"
