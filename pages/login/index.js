@@ -31,6 +31,7 @@ export default function index() {
             <div className ={styles.form__container}>
                 <form>
                     <InputForm
+                        label="Login *"
                         type="email"
                         name="email"
                         id="email"
@@ -47,6 +48,7 @@ export default function index() {
                         icon={faLock}
                         success={true}
                         placeholder=""
+                        label="mot de passe *"
                     />
 
                     <div className={styles.remenber__me}>

@@ -1,14 +1,14 @@
 import React from 'react'
 import HomeLayout from '../../../layouts/Home/Homelayout'
-import styles from "./projects.module.scss"
-import EditprojectsForm from "../../../components/tasksForm/taskform.js"
-export default function TasksCreate() {
+import styles from "./create.module.scss"
+import TaskForm from '../../../components/tasksForm/Task'
+export default function TaskCreate(props) {
   return (
     <div className={styles.container__wrapper}>
         <div className={styles.project__form}>
-              <EditprojectsForm title="create"
-              isEdit={true}
-              isAdd={true}
+              <TaskForm  title="Ajouter une tâche"
+              isEdit={0}
+              isAdd={1}
               />
           </div>
     </div>
@@ -16,6 +16,10 @@ export default function TasksCreate() {
 }
 
 
-TasksCreate.getLayout = function getLayout(page) {
+TaskCreate.getInitialProps = ({ query: { id, isAdd, isEdit } }) => {
+  return { id, isAdd, isEdit }
+}
+
+TaskCreate.getLayout = function getLayout(page) {
     return (<HomeLayout>{page}</HomeLayout>)
   }

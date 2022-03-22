@@ -49,6 +49,7 @@ export default function Projectlisting(props) {
         };
 
     const [columns, setColumns] = useState(props.statutLists);
+    const [editLink, seteditLink] = useState(props.editLink);
     
   return (
     <div className={styles.projects__container}>
@@ -96,7 +97,7 @@ export default function Projectlisting(props) {
                                      }}
                                    >  
                                    {
-                                    <Projectcards item={item}  statutstate={columColor}/>
+                                    <Projectcards item={item}  statutstate={columColor}  editLink={editLink}/>
                                    }
                                    
                                    </div>  

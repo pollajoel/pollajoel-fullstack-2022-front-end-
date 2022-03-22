@@ -1,0 +1,22 @@
+.container__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 6px;
+
+    .created__button{
+        padding: 5px ;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .Kanban__board{
+        width: 100%;
+    }
+    .container__button{
+        width: 50%;
+    }
+    .bouton__white{
+     padding: 15px;
+    }
+    padding: 0px 0px 20px 0px;
+}

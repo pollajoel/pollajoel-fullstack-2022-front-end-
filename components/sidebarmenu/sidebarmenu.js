@@ -1,9 +1,10 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faSignOut,faTasks, faPieChart ,faHomeAlt, faUsers, faCog,  faList, faCalendarTimes} from '@fortawesome/free-solid-svg-icons';
+import {faSignOut, faHomeAlt, faUsers, faCog,  faList, faCalendarTimes} from '@fortawesome/free-solid-svg-icons';
 import styles from './sidebarmenu.module.scss'
 import uniqid from 'uniqid';
 import Link from 'next/link';
+import Image from 'next/image';
 export default function Sidebarmenu() {
 
     const menu =[
@@ -21,7 +22,14 @@ export default function Sidebarmenu() {
             <ul className={styles.nav__list}>
                 <li className={styles.nav__logo}>
                       <Link href="/">
-                            <a href="/">Logo</a>
+                            <a href="/">
+                                <Image
+                                  src={"/uploads/logo.JPG"}
+                                  alt="logo"
+                                  height={100}
+                                  width={200}
+                                />
+                                </a>
                        </Link>
                 </li>
                 {
@@ -41,8 +49,12 @@ export default function Sidebarmenu() {
                         {
                             item.link=="/parametres"?
                             <ul className={styles.second__menu}>
-                                <li>Profil</li>
-                                <li>Tâches</li>
+                                    <li>
+                                        <div className={styles.menu__contain}>
+                                            <div><Link href="/statuts">Statuts</Link></div>
+                                            <div><Link href="/roles">Roles</Link></div>
+                                        </div>
+                                    </li>
                             </ul>:null
                         }
 

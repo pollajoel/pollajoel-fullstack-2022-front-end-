@@ -1,0 +1,19 @@
+.container__wrapper{
+   
+    
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    .created__button{
+        width: 100%;
+    }
+    .user__list{
+        margin-top: 30px;
+        width: 100%;
+        overflow:scroll;
+        height: 400px;
+        
+    }
+
+    
+}

@@ -6,7 +6,7 @@ import uniqid from 'uniqid'
 import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
 import Link from 'next/link'
 
-export default function Projects({columnsBackenfront}) {
+export default function Projects({columnsBackenfront, editLink}) {
   
 const [boutonaddState, SetboutaddState] = useState(false)
 const setAdd= ( ) =>{
@@ -20,13 +20,16 @@ const setAdd= ( ) =>{
           <Link href={"projects/create"}>
             <Boutonblue 
               name="Nouveau projet"
-              onClick={e=>setAdd()}
             />
           </Link>
         </div>
         <div>
             <div className={styles.Kanban__board}>
-              <Projectlisting statutLists={columnsBackenfront} isAdd={boutonaddState}/>
+              <Projectlisting 
+                statutLists={columnsBackenfront} 
+                editLink = { editLink}
+                
+            />
             </div>
         </div>
        
@@ -35,7 +38,7 @@ const setAdd= ( ) =>{
 }
 
 Projects.getInitialProps = async (ctx) => {
-
+  const editLink ="/projects/edit"
   const Projects =[
     {name:"editor tab", id:"Editor", isEditor:true},
     {name:"Progression", id:"test4"},
@@ -92,7 +95,7 @@ Projects.getInitialProps = async (ctx) => {
           
     }
    console.log( columnsBackenfront )
-  return {columnsBackenfront, isAdd}
+  return {columnsBackenfront, isAdd, editLink}
 }
 
 Projects.getLayout = function getLayout(page) {

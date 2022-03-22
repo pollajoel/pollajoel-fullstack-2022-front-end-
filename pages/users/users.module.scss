@@ -1,0 +1,13 @@
+.container__wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    .created__button{
+        width: 100%;
+    }
+    .user__list{
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+}

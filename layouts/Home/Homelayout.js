@@ -5,10 +5,8 @@ import Image from 'next/image'
 import defaultImage from "../../public/uploads/user.png"
 import Loginmessage from '../../components/loginmessage/loginmessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faBell, faChevronDown, faTasks} from '@fortawesome/free-solid-svg-icons'
-import Tasks from '../../components/tasks/tasks'
-import Boutonwhite from '../../components/bouton/boutonwhite/boutonwhite'
-import Title from '../../components/title/title'
+import {faBell, faChevronDown} from '@fortawesome/free-solid-svg-icons'
+
 
 
 export default function Homelayout({children}) {
@@ -39,21 +37,6 @@ export default function Homelayout({children}) {
                 <FontAwesomeIcon  icon={faBell} size="2x"/>
               </div>    
             </div>
-            <div className={styles.task__open}>
-            <FontAwesomeIcon  icon={faTasks} size="2x"/>
-                <div className={styles.container__secondsidebar}>
-                    <Title title="Tâches en cours"/>
-                    <div className={styles.taxk__container}>
-                        <Tasks></Tasks>
-                        <Tasks></Tasks>
-                        <Tasks></Tasks>
-                        <Tasks></Tasks>
-                    </div>
-                  <div>
-                      <Boutonwhite name="Voir plus.." icon={faTasks} style={{"background-color":"#191919"}}></Boutonwhite>
-                  </div>
-                </div>
-              </div>
           </div>
       </div>
 
