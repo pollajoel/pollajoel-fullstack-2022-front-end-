@@ -3,24 +3,44 @@ import InputForm from '../form/inputForm/input'
 import {faPlus} from '@fortawesome/free-solid-svg-icons'
 import Boutonwhite from '../bouton/boutonwhite/boutonwhite';
 import styles from "./rolesForm.module.scss"
-
-
+import {CREATE_STATUT} from '../../graphql/mutation'
+import { useMutation } from '@apollo/client';
+import { useRouter } from 'next/router'
 export default function StatutsForm(props) {
+const router = useRouter();
+ 
+const [CreateStatutMutation, {data, errors, loading}] = useMutation(CREATE_STATUT, {
+        onCompleted: (data)=>{
+            router.reload()
+        },
+        onError: (errors)=>{}
+ })
+
+ 
+
 
  const [formState, SetFormState]=useState({
-    name: props.statut?.name || "sss",
-    description: props.statut?.description || "sss",
-    color: props.statut?.color || "sss",
+    name:"",
+    description:"",
+    color:"",
  })
  const [windowReady, SetwindowReady]= useState(false)
 
+    const AddStatut = async(event) => {
+        event.preventDefault();
+        await CreateStatutMutation({
+            variables:{...formState},
+            context:{headers:{authorization:typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+        })
+    }
 
-    useEffect(() => {
-       
-        SetwindowReady( true )
+    const ChangeColor=(event )=>{
+        const colorValue =""+event.target.value+"";
+        SetFormState({...formState, color:colorValue})
+    }
 
-    },[])
 
+  useEffect(() => { SetwindowReady( true )},[])
   return (
     
     <div className={styles.project__form}>
@@ -29,8 +49,9 @@ export default function StatutsForm(props) {
 
     <div className={styles.First__column}>
         
+        <div>
             <InputForm 
-                label="intitulé du statut"
+                label="intitulé du statut *"
                 name="name"
                 error={true}
                 id="name"
@@ -38,39 +59,37 @@ export default function StatutsForm(props) {
                 value={formState.name}
                 type="text"
             />
-            
+        </div>
+        <div>
             <InputForm 
-                label="description"
+                label="description *"
                 name="description"
                 error={true}
-                id="name"
+                id="description"
                 onChange={(e)=>SetFormState({...formState, description:e.target.value })}
-                value={formState.name}
+                value={formState.description}
                 type="text"
             />
-
+        </div>
         
-    </div>
+    
 
-    <div className={styles.second__column}>
-
-
-    <InputForm 
-                label="couleur"
+            <div className={styles.input__color}>
+                <label>marqueur</label>  
+            <input
+                placeholder="marqueur*"
                 name="color"
-                error={true}
                 id="color"
-                onChange={(e)=>SetFormState({...formState, color:e.target.value })}
-                value={formState.name}
+                onChange={(e)=>ChangeColor(e)}
                 type="color"
-               
             />
+            </div>
 
 
 		{
             windowReady?
             <div className={styles.buton__submit}>
-                <Boutonwhite icon={faPlus} name="Ajouter"/>
+                <Boutonwhite icon={faPlus} name="Ajouter" onClick={e=>AddStatut(e)}/>
             </div>:null
         }
         

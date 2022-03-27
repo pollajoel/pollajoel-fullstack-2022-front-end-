@@ -4,7 +4,7 @@ import absoluteUrl from 'next-absolute-url';
 
 const upload = multer({
   storage: multer.diskStorage({
-    destination: './public/uploads',
+    destination: './public',
     filename: (req, file, cb) => cb(null, file.originalname),
   }),
 });
@@ -26,8 +26,7 @@ apiRoute.post((req, res) => {
   res.status(200).json(
     { 
         data: 'success',
-        files: req.files[0],
-        //url: url_image
+        files: req.files[0]
     }
     )
 });

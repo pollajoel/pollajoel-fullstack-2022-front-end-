@@ -4,7 +4,19 @@ import styles from "./users.module.scss"
 import Usercard from '../../components/usercard/usercard'
 import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
 import Link from 'next/dist/client/link'
+import { useQuery } from "@apollo/client";
+import { USERS } from '../../graphql/query'
+import Loader from '../../components/Loader/loader'
+
 export default function UsersListe(props) {
+  
+  const  {data, loading, errors } = useQuery(USERS,{
+    context:{headers:{authorization: typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+  });
+
+  if( loading ){ return(<Loader/>)}
+
+  if( data )
   return (
     <div className={styles.container__wrapper}>
         <div className={styles.created__button}>
@@ -21,7 +33,7 @@ export default function UsersListe(props) {
         </div>
         <div className={styles.user__list}>
               {
-                props.usersliste.map((user)=><Usercard
+                data.users.map((user)=><Usercard
                     user={user}
                   />)
               }
@@ -35,45 +47,3 @@ UsersListe.getLayout = function getLayout(page) {
     return (<HomeLayout>{page}</HomeLayout>)
   }
 
-UsersListe.getInitialProps = async (ctx) => {
-
-    const usersliste = [
-        {
-            name: "teguia",
-            firstname: "polla joël",
-            email: "pollajoel2017@gmail.com",
-            user_image:"/bg.jpg",
-            fonction:"fonction"
-        },
-        {
-            name: "teguia",
-            firstname: "polla joël",
-            email: "pollajoel2017@gmail.com",
-            user_image:"/bg.jpg",
-            fonction:"fonction"
-        },
-        {
-            name: "teguia",
-            firstname: "polla joël",
-            email: "pollajoel2017@gmail.com",
-            user_image:"/bg.jpg",
-            fonction:"fonction"
-        },
-        {
-            name: "teguia",
-            firstname: "polla joël",
-            email: "pollajoel2017@gmail.com",
-            user_image:"/bg.jpg",
-            fonction:"fonction"
-        },
-        {
-            name: "teguia",
-            firstname: "polla joël",
-            email: "pollajoel2017@gmail.com",
-            user_image:"/bg.jpg",
-            
-        }
-    ]
-
-    return {usersliste}
-  }

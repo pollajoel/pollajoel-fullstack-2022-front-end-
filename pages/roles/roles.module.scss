@@ -1,5 +1,11 @@
 .container__wrapper{
    
+   
+
+    .title{
+        padding: 0px 16px 0px 4px;
+        font-size:500px;
+    }
     
     display: flex;
     flex-wrap: wrap;
@@ -8,10 +14,12 @@
         width: 100%;
     }
     .user__list{
-        margin-top: 30px;
+        margin-top: 10px;
         width: 100%;
-        overflow:scroll;
-        height: 400px;
+        height: 300px;
+        padding: 50Px;
+        overflow-y: scroll;
+
         
     }
 

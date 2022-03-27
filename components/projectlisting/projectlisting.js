@@ -2,13 +2,55 @@ import React, {useState, useEffect} from 'react'
 import Projectcards from '../projectcards/projectcards';
 import styles from './projectlisting.module.scss';
 import { DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd';
-export default function Projectlisting(props) {
-  const [winReady, setwinReady] = useState(false);
-  
+import Loader from '../Loader/loader';
+import {useMutation} from '@apollo/client'
+import {UPDATE_PROJECT} from '../../graphql/mutation'
 
+
+export default function Projectlisting(props) {
+
+  const [UpdateStatus]=useMutation(UPDATE_PROJECT,{
+    context:{headers:{authorization: typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+  })
+
+  const [winReady, setwinReady] = useState(false);
       useEffect(() => {
-          setwinReady(true);
-        }, []);
+        LoadData();
+        }, [columns]);
+
+      const LoadData = async()=>{
+        
+        var myHeaders = new Headers();
+        myHeaders.append("authorization", `${typeof window !== 'undefined'?localStorage.getItem("Token"):""}`);
+        var requestOptions = {
+          method: 'GET',
+          headers: myHeaders,
+        };
+        const res = await fetch("http://localhost:4000/api/v1/projects", requestOptions)
+        const Allprojects = await res.text()
+        const resstat = await fetch("http://localhost:4000/api/v1/statuts", requestOptions)
+        const allstatuts = await resstat.text()
+        const allstat = JSON.parse(allstatuts)
+        const allproj = JSON.parse(Allprojects);
+        const init = {}
+        var tab = {}
+        for( let i=0; i<allstat.length; i++ ) {
+          tab[allstat[i].id] ={
+            name:allstat[i].name,
+            status_color:allstat[i].color,
+            items: []
+          }
+        }
+
+        for( let i =0; i< allproj.length; i++) {
+          tab[allproj[i].statutId].items.push({name:allproj[i].title,id:allproj[i].id+"" })
+        }
+       if( tab ){ 
+          setColumns( tab )
+          setwinReady(true)
+       }
+       
+      }
   
         
         const onDragEnd = (result, columns, setColumns) => {
@@ -20,8 +62,15 @@ export default function Projectlisting(props) {
             const destColumn = columns[destination.droppableId];
             const sourceItems = [...sourceColumn.items];
             const destItems = [...destColumn.items];
-            const [removed] = sourceItems.splice(source.index, 1);
+            const [removed] = sourceItems.splice(source.index, 1); //projet dont on voudrais changer le statut
             destItems.splice(destination.index, 0, removed);
+            
+            // removed: tache ou projet selctionné
+            // destination.droppableId = nouveau statut
+
+            console.log( removed )
+            console.log( destination.droppableId )
+
             setColumns({
               ...columns,
               [source.droppableId]: {
@@ -48,9 +97,11 @@ export default function Projectlisting(props) {
           }
         };
 
-    const [columns, setColumns] = useState(props.statutLists);
+    const [columns, setColumns] = useState({});
     const [editLink, seteditLink] = useState(props.editLink);
     
+  if(!columns ) return (<Loader/>)
+  if( columns )
   return (
     <div className={styles.projects__container}>
       {
@@ -92,7 +143,7 @@ export default function Projectlisting(props) {
                                        userSelect: 'none',
                                        margin: '0 0 8px 0',
                                        backgroundColor: snapshot.isDragging?'#263B4A':'#456C86',
-                                       color: '#fff',
+                                       color: '#000',
                                        ...provided.draggableProps.style
                                      }}
                                    >  

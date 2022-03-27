@@ -1,11 +1,17 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './inputForm.module.scss';
 import {faCheckCircle, faExclamationCircle} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function InputForm(props) {
+    const [windowsisReady, setWindowsIsready] =useState(false)
+    useEffect(() => {
+        setWindowsIsready(true)
+    },[])
+
   return (
     <div>
+    {setWindowsIsready?
     <div className={styles.input__container}>
             <div className={styles.icon__container}>
             <FontAwesomeIcon 
@@ -28,9 +34,11 @@ export default function InputForm(props) {
                         onChange={props.onChange}
                         value={props.value}
                         className={props.customstyle}
+                        accept={props.accept}
+                        min={`${props.min}`}
                     />
                     {
-                     props.success?
+                     props.success!=="" && props.success!==null && props.isAdd==0?
                         <span>
                             <FontAwesomeIcon 
                                 className={styles.icon__verified}
@@ -42,7 +50,7 @@ export default function InputForm(props) {
                     }
                     {
 
-                        props.error?<span>
+                        (props.error=="" ||  props.error==null) && props.isAdd==0?<span>
                             <FontAwesomeIcon 
                                 className={styles.icon__error}
                                 icon={faExclamationCircle}
@@ -55,11 +63,13 @@ export default function InputForm(props) {
 
                 </div>
             </div>
-    </div>
+    </div>:null}
+    
     <div>
     {props.error?<em className={styles.error__message}>{props.erromessage}</em>:<em></em>}
-        
-        </div>
+    </div>
+    
+    
     </div>
   )
 }

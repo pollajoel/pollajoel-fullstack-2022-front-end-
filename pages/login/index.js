@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styles from './login.module.scss'
 import logo from '../../public/uploads/logo.jpg'
 import Image from 'next/image'
@@ -7,9 +7,41 @@ import {faLock, faUser, faUserEdit} from '@fortawesome/free-solid-svg-icons';
 import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
 import Boutonwhite from '../../components/bouton/boutonwhite/boutonwhite'
 import Link from 'next/link'
-
+import { useMutation } from "@apollo/client";
+import { AUTHENTICATE_USER } from '../../graphql/mutation'
+import { useRouter } from 'next/router'
 
 export default function index() {
+    const router = useRouter()
+    const [Formstate, SetFormstate] = useState({
+        email:"",
+        password:""
+    })
+
+    const [LoginMutation, {data, errors, loading}] = useMutation(AUTHENTICATE_USER, {
+        onCompleted: (data)=>{
+            //console.log( "Token: "+data )
+            localStorage.setItem("Token",data.authentification.token )
+            router.push("/")
+        },
+        onError: (errors)=>{
+            alert( errors )
+            console.log( errors )
+        }
+    })
+
+    const OnsubmitForm = async(e)=>{
+        e.preventDefault();	
+        await LoginMutation({
+            variables:{
+                email:Formstate.email,
+                password: Formstate.password
+            }
+        })
+    }
+
+
+
   return (
     <div className={styles.login__wrapper}>
         <div className={styles.login__image}></div>
@@ -38,7 +70,8 @@ export default function index() {
                         icon={faUser}
                         placeholder=""
                         error={true}
-                        erromessage="adresse incorrecte"
+                        erromessage=""
+                        onChange={(e)=>SetFormstate({...Formstate, email:e.target.value})}
                     />
 
                     <InputForm
@@ -49,6 +82,7 @@ export default function index() {
                         success={true}
                         placeholder=""
                         label="mot de passe *"
+                        onChange={(e)=>SetFormstate({...Formstate, password:e.target.value})}
                     />
 
                     <div className={styles.remenber__me}>
@@ -73,7 +107,9 @@ export default function index() {
 
                     <div className={styles.loginButton}>
                         <div className="loginButton__connexion">
-                            <Boutonblue name="Connexion"/>
+                            <Boutonblue name="Connexion"
+                                onClick={(e)=>OnsubmitForm(e)}
+                            />
                         </div>
                         <div className={styles.loginButton__createaccount}>
                             <Link href="/register">

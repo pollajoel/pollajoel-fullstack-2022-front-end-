@@ -11,6 +11,7 @@ export default function TextareaForm(props) {
             value={props.value}
             rows={props.rows}
             cols={props.cols}
+            onChange={props.onChange}
            
             
         >

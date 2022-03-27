@@ -6,7 +6,7 @@ export default function TaskCreate(props) {
   return (
     <div className={styles.container__wrapper}>
         <div className={styles.project__form}>
-              <ProjectForm  title="Ajouter un projet"
+              <ProjectForm  title="Nouvelle tâche"
               isEdit={0}
               isAdd={1}
               />

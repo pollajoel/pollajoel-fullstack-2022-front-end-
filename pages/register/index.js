@@ -16,9 +16,28 @@ export default function index() {
    const [formError, setFormError]= useState({
        nameControl:{
             error: false,
-            success: false
+            success: false,
+            message:""
             
-       }
+       },
+       firstnameControl:{
+        error: false,
+        success: false,
+        message:""
+        
+   },
+    emailControl:{
+        error: false,
+        success: false,
+        message:""
+        
+    },
+    passwordControl:{
+        error: false,
+        success: false,
+        message:""
+        
+        }
    })
     
     const [Formstate, SetFormstate] = useState({
@@ -31,21 +50,65 @@ export default function index() {
 
     const [CreateUserMutation, {data, errors, loading}] = useMutation(CREATE_USER, {
         onCompleted: (data)=>{
-            console.log( data )
+            var nameError = {error:false, success:true }
+            var emailError = {error:false, success:true }
+            var passwordError = {error:false, success:true }
+            var firstnameError = {error:false, success:true }
+            setFormError({
+                ...formError,  
+                emailControl: emailError,
+                passwordControl: passwordError,
+                firstnameControl: firstnameError,
+                nameControl: nameError,
+            });
+
+            SetFormstate({
+                ...Formstate,
+                name:"",
+                firstname:"",
+                email:"",
+                password:""
+            })
+
         },
-        onError: (error)=>{
-            alert( error )
+        onError: (errors)=>{
+
+            var nameError = {error:false, success:false }
+            var emailError = {error:false, success:false }
+            var passwordError = {error:false, success:false }
+            var firstnameError = {error:false, success:false }
+            
+            if( Formstate.name=="")
+                nameError = {...nameError, error:true, message:"nom obligatoire"}
+            if( Formstate.email=="")
+                emailError = {...emailError, error:true, message:"email obligatoire"}
+            if( Formstate.password=="" )
+                passwordError = {...passwordError, error:true, message:"mot de passe obligatoire"}
+            if( Formstate.email=="" )
+                firstnameError = {...firstnameError, error:true, message:"prenom requis"}
+
+            setFormError({
+                ...formError,  
+                emailControl: emailError,
+                passwordControl: passwordError,
+                firstnameControl: firstnameError,
+                nameControl: nameError,
+            })
+
+
+
+
+
         },
         onloading: (data)=>{
             alert
         }
     });
+    
     const OnsubmitForm = async(e)=>{
+        e.preventDefault();	
 
-       
-        e.preventDefault();
-
-        try{
+    try{
         
         const content =await CreateUserMutation({
             variables: {
@@ -54,7 +117,7 @@ export default function index() {
                     firstname: Formstate.firstname,
                     name: Formstate.name,
                     password:Formstate.password,
-                    is_admin:"true"
+                    is_admin:false
                 }
             }
         });
@@ -88,7 +151,7 @@ export default function index() {
             <div className ={styles.form__container}>
                 <form>
                     <InputForm
-                        label="votre Nom"
+                        label="votre Nom*"
                         type="text"
                         name="name"
                         id="name"
@@ -96,19 +159,21 @@ export default function index() {
                         placeholder=""
                         error={formError.nameControl.error}
                         success={formError.nameControl.success}
-                        erromessage="adresse incorrecte"
+                        erromessage={formError.nameControl.message}
                         onChange={(e)=>SetFormstate({...Formstate, name:e.target.value})}
                     />
 
                     <InputForm
-                        label="Votre prenom"
+                        label="Votre prenom *"
                         type="text"
                         name="firstname"
                         id="firstname"
                         icon={faUser}
-                        success={true}
                         placeholder=""
                         onChange={(e)=>SetFormstate({...Formstate, firstname:e.target.value})}
+                        error={formError.firstnameControl.error}
+                        success={formError.firstnameControl.success}
+                        erromessage={formError.firstnameControl.message}
                     />
 
 
@@ -116,12 +181,14 @@ export default function index() {
                     <InputForm
                         type="email"
                         name="email"
-                        label="email"
+                        label="email *"
                         id="email"
                         icon={faEnvelope}
-                        success={true}
                         placeholder=""
                         onChange={(e)=>SetFormstate({...Formstate, email:e.target.value})}
+                        error={formError.emailControl.error}
+                        success={formError.emailControl.success}
+                        erromessage={formError.emailControl.message}
                     />
 
                     <InputForm
@@ -130,12 +197,14 @@ export default function index() {
                         name="password"
                         id="password"
                         icon={faLock}
-                        success={true}
                         placeholder=""
                         onChange={(e)=>SetFormstate({...Formstate, password:e.target.value})}
+                        error={formError.passwordControl.error}
+                        success={formError.passwordControl.success}
+						autocomplete="current-password"
+                        erromessage={formError.passwordControl.message}
                     />
-                    {Formstate.name}
-
+            
                     <div className={styles.loginButton}>
                         <div className="loginButton__connexion">
                             <Boutonblue name="Valider"
@@ -163,8 +232,3 @@ export default function index() {
   )
 }
 
-
-index.getInitialProps = async (ctx) => {
-
-    return {}
-}

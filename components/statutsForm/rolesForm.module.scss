@@ -1,19 +1,26 @@
 .form__data{
     display: flex;
-    justify-content: center;
+    width:100%;
+}
 
-    
+.input__color{
+    padding-top: 30px;
+    label{
+        margin-right: 6px;
+    }
 }
 
 .First__column{
-
-    width: 30%;
-    margin-right: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border: 1px solid whitesmoke;
+    padding: 4px;
+    background: #FFF;
+    border-radius: 5px;
 }
 
-.second__column{
-    width: 30%;
-}
 
 
 .cunstom__file{
