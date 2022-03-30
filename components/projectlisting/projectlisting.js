@@ -10,13 +10,35 @@ import {UPDATE_PROJECT} from '../../graphql/mutation'
 export default function Projectlisting(props) {
 
   const [UpdateStatus]=useMutation(UPDATE_PROJECT,{
-    context:{headers:{authorization: typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
-  })
+    onCompleted: (data)=>{
+        //console.log( "Token: "+data )
+        //localStorage.setItem("Token",data.authentification.token )
+        //router.push("/")
+    },
+    onError: (errors)=>{
+        console.log( errors )
+    }
+})
 
+  const update = async(projectId, newStatutId, currentProject)=>{
+      await UpdateStatus({
+        variables:{id:Number.parseInt(projectId),projectInputUpdate:{
+          start_date: currentProject.start_date,
+          end_date: currentProject.end_date,
+          statutId: Number.parseInt(newStatutId),
+          title: currentProject.name,
+          userId: currentProject.userId
+        
+        }},
+        context:{headers:{authorization:typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+      })
+  }
+
+ const [statuts, setAstatuts] = useState([])
   const [winReady, setwinReady] = useState(false);
       useEffect(() => {
         LoadData();
-        }, [columns]);
+        }, []);
 
       const LoadData = async()=>{
         
@@ -31,6 +53,7 @@ export default function Projectlisting(props) {
         const resstat = await fetch("http://localhost:4000/api/v1/statuts", requestOptions)
         const allstatuts = await resstat.text()
         const allstat = JSON.parse(allstatuts)
+        setAstatuts( allstat )
         const allproj = JSON.parse(Allprojects);
         const init = {}
         var tab = {}
@@ -43,7 +66,14 @@ export default function Projectlisting(props) {
         }
 
         for( let i =0; i< allproj.length; i++) {
-          tab[allproj[i].statutId].items.push({name:allproj[i].title,id:allproj[i].id+"" })
+          tab[allproj[i].statutId]?.items?.push({
+            name:allproj[i].title,
+            id:allproj[i].id+"",
+            start_date: allproj[i].start_date,
+            end_date: allproj[i].end_date,
+            statutId: allproj[i].statutId,
+            userId: allproj[i].userId
+          })
         }
        if( tab ){ 
           setColumns( tab )
@@ -67,9 +97,7 @@ export default function Projectlisting(props) {
             
             // removed: tache ou projet selctionné
             // destination.droppableId = nouveau statut
-
-            console.log( removed )
-            console.log( destination.droppableId )
+            update(removed.id, destination.droppableId, removed) ;
 
             setColumns({
               ...columns,
@@ -103,6 +131,15 @@ export default function Projectlisting(props) {
   if(!columns ) return (<Loader/>)
   if( columns )
   return (
+    <div>
+      {winReady?<div className={styles.item__title}>
+        { 
+        statuts.map((item, index)=><div key={index} className={styles.title}>{item.name}</div>)
+        }
+      </div>:null
+    }
+
+
     <div className={styles.projects__container}>
       {
         winReady?<DragDropContext onDragEnd={result=>onDragEnd(result, columns, setColumns )}>
@@ -110,7 +147,7 @@ export default function Projectlisting(props) {
               
               Object.entries(columns).map(([id, column])=>{
                 var columColor = column.status_color;
-              return (<div key={id}><div className={styles.title}>{column.name}</div>
+              return (<div key={id}>
               <Droppable droppableId={id.toString()} key={id}> 
               { (provided, snapshot) => {
                   return (<div
@@ -118,9 +155,9 @@ export default function Projectlisting(props) {
                         ref={provided.innerRef}
                         style={{ background:snapshot.isDraggingOver? 'lightblue':'lightgray',
                             
-                            width: '150px',
+                            width: '200px',
                             height: 'auto',
-                            border: '2px solid #fff',
+                            border: '1px solid #fff',
                             padding: '6px',
                             minheight:'950px'
                       }}
@@ -169,5 +206,5 @@ export default function Projectlisting(props) {
         </DragDropContext>:null
       }
     </div>
-  )
+    </div>)
 }

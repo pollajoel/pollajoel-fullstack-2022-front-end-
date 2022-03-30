@@ -5,14 +5,33 @@ import styles from "./task.module.scss"
 import uniqid from 'uniqid'
 import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
 import Link from 'next/link'
+import {useQuery, NetworkStatus} from '@apollo/client'
+import {PROJECT_TASKS} from '../../graphql/query'
+import Loader from '../../components/Loader/loader'
 
-export default function Tasks({columnsBackenfront, editLink}) {
-  
+export default function Tasks({columnsBackenfront, editLink, id}) {
+
+   
+      const { loading, error, data, refetch, networkStatus } = useQuery(
+        PROJECT_TASKS,
+        {
+          variables: {projectId:Number.parseInt(id)},
+          notifyOnNetworkStatusChange: true,
+          context:{headers:{authorization: typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+        },
+      );
+    
+
 const [boutonaddState, SetboutaddState] = useState(false)
 const setAdd= ( ) =>{
     SetboutaddState(true)
 }
+if (networkStatus === NetworkStatus.refetch) return 'Refetching!'
+  if( error) return <div>An error occur...</div>
+
+  if( loading) return(<Loader/>)
   
+  if( data )
   return (
     <div className={styles.container__wrapper}>
 
@@ -39,7 +58,7 @@ const setAdd= ( ) =>{
   )
 }
 
-Tasks.getInitialProps = async (ctx) => {
+Tasks.getInitialProps = async ({ query: { id} }) => {
 
   const editLink ="/tasks/edit"
   const Projects =[
@@ -91,7 +110,7 @@ Tasks.getInitialProps = async (ctx) => {
           
     }
    console.log( columnsBackenfront )
-  return {columnsBackenfront, isAdd, editLink}
+  return {columnsBackenfront, isAdd, id}
 }
 
 Tasks.getLayout = function getLayout(page) {

@@ -53,7 +53,7 @@ export default function Projectcards(props) {
                     <div aria-label="Modifier" data-balloon-pos="down">
                         {
                          
-                          <Link href={{pathname:`${props.editLink}`, query:{id:1}}}>
+                          <Link href={{pathname:`${props.editLink}`, query:{id:`${props.item.id}`}}}>
                               <FontAwesomeIcon  icon={faEdit} size="2x"/>
                           </Link>
                       }
@@ -61,8 +61,11 @@ export default function Projectcards(props) {
                     
                   
                   <div aria-label="Supprimer" data-balloon-pos="down"><FontAwesomeIcon  icon={faTrashAlt} size="2x"/></div>
+                  <div className={styles.task__icon} aria-label={`voir les tâches`} data-balloon-pos="down"><Link 
+                  href={{pathname:`${"/tasks"}`, query:{id:`${props.item.id}`}}}
+                  >Tâches</Link></div>
               </div>
-              <div className={styles.task__icon} aria-label={`2 tâches`} data-balloon-pos="down"><Link href={"/tasks"}>2 Tâches</Link></div>
+              
           </div>
       </div>
     </div>

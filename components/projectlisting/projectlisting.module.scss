@@ -1,14 +1,20 @@
+
+.item__title{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    div{
+        width: 150px;
+    }
+}
+
 .projects__container{
-    background-color: whitesmoke;
     border-radius: 1px;
     display: flex;
     padding: 10px;
-    height: 450px;
+    height: 400px;
     width: 100%;
-    
     overflow-y: scroll;
-    overflow-x: scroll;
-    box-shadow: 0 1px 6px 0 rgb(32 33 36 / 28%);
     .container__button{ width: 100%;}
     .title{
         padding: 8px;

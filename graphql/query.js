@@ -30,6 +30,13 @@ query
 } 
 `
 
-export const TASKS = gql `
+export const TASKS = gql`
 query{tasks{id,name,start_date, end_date, statut{id,name,description}, statutId, user{id}}}
+`
+
+export const PROJECT_TASKS = gql`
+query projectsTaks($projectId:ID!)
+  {
+    projectsTaks(projectId:$projectId){id, name, statut{id, name,description}, start_date, end_date, description}
+  }
 `
