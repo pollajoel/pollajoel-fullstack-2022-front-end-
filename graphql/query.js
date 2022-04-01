@@ -37,6 +37,6 @@ query{tasks{id,name,start_date, end_date, statut{id,name,description}, statutId,
 export const PROJECT_TASKS = gql`
 query projectsTaks($projectId:ID!)
   {
-    projectsTaks(projectId:$projectId){id, name, statut{id, name,description}, start_date, end_date, description}
+    projectsTaks(projectId:$projectId){id, name, statut{id, name,description, color}, start_date, end_date, description, projectId, user{id, name}}
   }
 `

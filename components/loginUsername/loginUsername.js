@@ -16,7 +16,7 @@ export default function LoginUsername(props) {
         SetwindowsReady(true)
     },[])
 
-  if( loading) return(<span>is loading...</span>)
+  if( loading) return(<div>is loading...</div>)
   if( data )
-  return (<span>{windowsready?<>{data.getMe.firstname}</>:null}<FontAwesomeIcon icon={faChevronDown} size="1x"/></span>)
+  return (<span>{windowsready?<>{  data.getMe.firstname  }</>:null}<FontAwesomeIcon icon={faChevronDown} size="1x"/></span>)
 }

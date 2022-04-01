@@ -4,8 +4,9 @@ import styles from './textareaForm.module.scss';
 export default function TextareaForm(props) {
   return (
     <div className={styles.textarea__wrapper}>
-      <div className={styles.title}>{props.label}</div>
+      <div className={styles.title} htmlFor={props.name}>{props.label}</div>
         <textarea 
+            id={props.name}
             name={props.name} 
             placeholder={props.description}
             value={props.value}

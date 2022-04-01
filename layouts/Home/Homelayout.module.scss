@@ -46,7 +46,7 @@
             span{
                 img{
                     border-radius: 50%;
-                    border: 1px solid red;
+                    border: 1px;
                 }
             }
         }
@@ -81,6 +81,10 @@
         }
 
         li{
+            span{
+                padding-top: 5px;
+            }
+            a{text-decoration: none;}
             &:hover{ 
                 .menu__contain{display: block;}
             }
@@ -106,7 +110,7 @@
 
     .home__container{
         position: absolute;
-        left: 83%
+        right: 1%
     }
 
     .task__open{

@@ -79,3 +79,28 @@ export const UPDATE_PROJECT = gql`
          }
     
 `
+
+export const CREATE_TASK = gql`
+    mutation createtask($taskInput:taskInput){
+        createtask(taskInput: $taskInput){id}
+    }
+`
+
+export const UPDATE_TASK = gql`
+    mutation updatetask($id:ID!, $updatetaskInput:updatetaskInput)
+        {
+            updatetask(id:$id, updatetaskInput:$updatetaskInput){id}
+        }
+`
+
+export const DELETE_TASK = gql`
+    mutation deletetask($id:ID!){
+        deletetask(id: $id)
+    }
+`
+
+export const DELETE_PROJECT = gql`
+    mutation deleteproject($id:ID!){
+        deleteproject(id:$id)
+    }
+`

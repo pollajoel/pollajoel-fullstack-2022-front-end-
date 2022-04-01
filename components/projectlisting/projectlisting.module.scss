@@ -2,7 +2,6 @@
 .item__title{
     display: flex;
     justify-content: space-around;
-    margin-bottom: 10px;
     div{
         width: 150px;
     }
@@ -14,7 +13,14 @@
     padding: 10px;
     height: 400px;
     width: 100%;
-    overflow-y: scroll;
+   
+
+    .Col__title{
+        padding-top: 5px;
+        text-align: center;
+        width: 212px;
+        font-weight: 700;
+    }
     .container__button{ width: 100%;}
     .title{
         padding: 8px;

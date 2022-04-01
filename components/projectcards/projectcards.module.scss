@@ -1,6 +1,11 @@
 .project__card__wrapper {
 
-    .task__icon{ font-size: 10px; font-weight: bold; svg{color:red}}
+    transition: transform .2s;
+    &:hover{
+        transform: scale(1.1)
+    }
+
+    .task__icon{ font-size: medium; font-weight: bold; }
     .project__containerbarre{
         border: 1px solid #FFF;
         height: 8px;
@@ -11,7 +16,7 @@
     border: 1px solid #e6e6e6;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 10%), 0 2px 4px -1px rgb(0 0 0 / 6%);
     padding: 5px;
-    height: 130px;
+    height: 80px;
     border-radius: 1px;
     margin-bottom: 12px;
     cursor: pointer;
@@ -24,7 +29,7 @@
     .project__containdata{
         position: relative;
         font-size: 10px;
-        margin-top: 62px;
+        margin-top: 5px;
     }
     .update__container{
         display: flex;
@@ -33,8 +38,11 @@
     .update__container{
         width: 100%;
         .icon__left{
-            width: 70%;
+            width: 100%;
             display: flex;
+            justify-content: flex-end;
+            height: 40px;
+            align-items: flex-end;
             div{
                 width: 20px;
                 padding: 0px;

@@ -29,7 +29,7 @@ export default function RolesForm(props) {
 
   return (
 
-    <div className={styles.project__form}>
+    <div className={`${styles.project__form}`}>
     <div className={styles.title}>{props.title}</div>
     <form id="create-course-form" className={styles.form__data}>
     <div className={styles.First__column}>

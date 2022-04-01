@@ -36,7 +36,6 @@ const setAdd= ( ) =>{
                 editLink = { editLink}
                 projectID = {projectID}
                 tasks = {`${data.tasks}`}
-                
             />
             </div>
         </div>

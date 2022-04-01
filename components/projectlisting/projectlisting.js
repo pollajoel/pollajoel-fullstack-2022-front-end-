@@ -4,10 +4,38 @@ import styles from './projectlisting.module.scss';
 import { DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd';
 import Loader from '../Loader/loader';
 import {useMutation} from '@apollo/client'
-import {UPDATE_PROJECT} from '../../graphql/mutation'
+import {UPDATE_PROJECT, UPDATE_TASK} from '../../graphql/mutation'
 
 
 export default function Projectlisting(props) {
+
+  function getStyle(style, snapshot) {
+    if (!snapshot.isDropAnimating) {
+      return style;
+    }
+    const { moveTo, curve, duration } = snapshot.dropAnimation;
+    // move to the right spot
+    const translate = `translate(${moveTo.x}px, ${moveTo.y}px)`;
+    // add a bit of turn for fun
+    const rotate = 'scale(0.9)';
+  
+    // patching the existing style
+    return {
+      ...style,
+      transform: `${translate} ${rotate}`,
+      // slowing down the drop because we can
+      transition: `all ${curve} ${duration + 0.5}s`,
+    };
+  }
+
+
+
+  const [updateTask] = useMutation(UPDATE_TASK, {
+    onCompleted: (data)=>{},
+    onError: (errors)=>{
+      console.log( errors )
+    }
+  })
 
   const [UpdateStatus]=useMutation(UPDATE_PROJECT,{
     onCompleted: (data)=>{
@@ -20,7 +48,29 @@ export default function Projectlisting(props) {
     }
 })
 
+
+ const updateTaskContain = async(taskId, newtaskId, currentTask)=>
+{
+  const projectId = currentTask?.projectId
+ 
+  await updateTask({
+      variables:{id:Number.parseInt(taskId),
+        updatetaskInput:{ 
+          projectId: Number.parseInt(projectId),
+          description: currentTask?.description,
+          statutId: Number.parseInt(newtaskId),
+          name: currentTask?.name
+        }
+      },
+      context:{headers:{authorization:typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
+  })
+  
+     
+    
+}
+
   const update = async(projectId, newStatutId, currentProject)=>{
+    console.log( currentProject )
       await UpdateStatus({
         variables:{id:Number.parseInt(projectId),projectInputUpdate:{
           start_date: currentProject.start_date,
@@ -41,7 +91,8 @@ export default function Projectlisting(props) {
         }, []);
 
       const LoadData = async()=>{
-        
+
+        const IsprojectTask = props?.projectsdata?.projectsTaks 
         var myHeaders = new Headers();
         myHeaders.append("authorization", `${typeof window !== 'undefined'?localStorage.getItem("Token"):""}`);
         var requestOptions = {
@@ -55,7 +106,6 @@ export default function Projectlisting(props) {
         const allstat = JSON.parse(allstatuts)
         setAstatuts( allstat )
         const allproj = JSON.parse(Allprojects);
-        const init = {}
         var tab = {}
         for( let i=0; i<allstat.length; i++ ) {
           tab[allstat[i].id] ={
@@ -65,6 +115,7 @@ export default function Projectlisting(props) {
           }
         }
 
+        if( !IsprojectTask ){
         for( let i =0; i< allproj.length; i++) {
           tab[allproj[i].statutId]?.items?.push({
             name:allproj[i].title,
@@ -72,13 +123,42 @@ export default function Projectlisting(props) {
             start_date: allproj[i].start_date,
             end_date: allproj[i].end_date,
             statutId: allproj[i].statutId,
-            userId: allproj[i].userId
+            userId: allproj[i].userId,
+            description: allproj[i].description,
+            statut: allproj[i].statut,
+            user: allproj[i].user
           })
         }
-       if( tab ){ 
-          setColumns( tab )
-          setwinReady(true)
+      }
+
+
+
+       if( tab && !IsprojectTask){ 
+          setColumns( tab  )  
+       }else{
+         
+        for( let i =0; i< IsprojectTask.length; i++) {
+          console.log( "pdate.....")
+          tab[IsprojectTask[i].statut.id]?.items?.push({
+            name:IsprojectTask[i].name,
+            id:IsprojectTask[i].id+"",
+            start_date: IsprojectTask[i].start_date,
+            end_date: IsprojectTask[i].end_date,
+            statutId: IsprojectTask[i].statut.id,
+            userId: IsprojectTask[i].user.id,
+            projectId:IsprojectTask[i].projectId,
+            description: IsprojectTask[i].description,
+            statut: IsprojectTask[i].statut,
+            user: IsprojectTask[i].user
+          })
+          console.log( tab )
+          setColumns( tab  ) 
+        }
+
+
        }
+
+       setwinReady(true)
        
       }
   
@@ -97,7 +177,13 @@ export default function Projectlisting(props) {
             
             // removed: tache ou projet selctionné
             // destination.droppableId = nouveau statut
-            update(removed.id, destination.droppableId, removed) ;
+            const IsprojectTask = props?.projectsdata?.projectsTaks;
+            if( ! IsprojectTask )
+              update(removed.id, destination.droppableId, removed);
+            else{
+              updateTaskContain(removed.id, destination.droppableId, removed);
+            }
+            console.log( removed)
 
             setColumns({
               ...columns,
@@ -132,34 +218,27 @@ export default function Projectlisting(props) {
   if( columns )
   return (
     <div>
-      {winReady?<div className={styles.item__title}>
-        { 
-        statuts.map((item, index)=><div key={index} className={styles.title}>{item.name}</div>)
-        }
-      </div>:null
-    }
-
-
     <div className={styles.projects__container}>
       {
         winReady?<DragDropContext onDragEnd={result=>onDragEnd(result, columns, setColumns )}>
             { 
               
               Object.entries(columns).map(([id, column])=>{
-                var columColor = column.status_color;
+              var columColor = column.status_color;
               return (<div key={id}>
+                <div className={styles.Col__title}>{column.name}</div>
               <Droppable droppableId={id.toString()} key={id}> 
               { (provided, snapshot) => {
                   return (<div
                         {...provided.droppableProps}  
                         ref={provided.innerRef}
-                        style={{ background:snapshot.isDraggingOver? 'lightblue':'lightgray',
+                        style={{ background:snapshot.isDraggingOver? 'lightblue':'#FFF',
                             
                             width: '200px',
                             height: 'auto',
-                            border: '1px solid #fff',
+                            borderRight: '2px solid #fff',
                             padding: '6px',
-                            minheight:'950px'
+                            minheight:'100px'
                       }}
                     >
 
@@ -175,17 +254,16 @@ export default function Projectlisting(props) {
                                    <div  
                                      ref={provided.innerRef}  
                                      {...provided.draggableProps}  
-                                     {...provided.dragHandleProps}  
-                                     styled={{
-                                       userSelect: 'none',
-                                       margin: '0 0 8px 0',
-                                       backgroundColor: snapshot.isDragging?'#263B4A':'#456C86',
-                                       color: '#000',
-                                       ...provided.draggableProps.style
-                                     }}
+                                     {...provided.dragHandleProps}
+                                     isDragging={snapshot.isDragging && !snapshot.isDropAnimating} 
+                                     style={getStyle(provided.draggableProps.style, snapshot)}
+  
                                    >  
                                    {
-                                    <Projectcards item={item}  statutstate={columColor}  editLink={editLink}/>
+                                    <Projectcards item={item}  statutstate={columColor}  editLink={editLink}
+                                      isTasks={props?.projectsdata?.projectsTaks}
+                                    
+                                    />
                                    }
                                    
                                    </div>  
