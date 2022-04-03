@@ -5,9 +5,25 @@ import { DragDropContext, Droppable , Draggable} from 'react-beautiful-dnd';
 import Loader from '../Loader/loader';
 import {useMutation} from '@apollo/client'
 import {UPDATE_PROJECT, UPDATE_TASK} from '../../graphql/mutation'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPlus} from '@fortawesome/free-solid-svg-icons';
 
+export default function Projectlisting({
+      editLink,
+      onClick,
+      projectID,
+      tasks, 
+      StatuId,
+      projectsdata,
+      StatutId,
+      SetstatutId,
+      setIsOpen
+}) {
 
-export default function Projectlisting(props) {
+  function OnclickADDdata(event, columm, index){
+    SetstatutId(index)
+    setIsOpen(true)
+  }
 
   function getStyle(style, snapshot) {
     if (!snapshot.isDropAnimating) {
@@ -92,7 +108,7 @@ export default function Projectlisting(props) {
 
       const LoadData = async()=>{
 
-        const IsprojectTask = props?.projectsdata?.projectsTaks 
+        const IsprojectTask = projectsdata?.projectsTaks 
         var myHeaders = new Headers();
         myHeaders.append("authorization", `${typeof window !== 'undefined'?localStorage.getItem("Token"):""}`);
         var requestOptions = {
@@ -110,6 +126,7 @@ export default function Projectlisting(props) {
         for( let i=0; i<allstat.length; i++ ) {
           tab[allstat[i].id] ={
             name:allstat[i].name,
+            statutId:allstat[i].id,
             status_color:allstat[i].color,
             items: []
           }
@@ -131,9 +148,7 @@ export default function Projectlisting(props) {
         }
       }
 
-
-
-       if( tab && !IsprojectTask){ 
+      if( tab && !IsprojectTask){ 
           setColumns( tab  )  
        }else{
          
@@ -151,11 +166,9 @@ export default function Projectlisting(props) {
             statut: IsprojectTask[i].statut,
             user: IsprojectTask[i].user
           })
-          console.log( tab )
-          setColumns( tab  ) 
         }
 
-
+        setColumns( tab  ) 
        }
 
        setwinReady(true)
@@ -174,10 +187,11 @@ export default function Projectlisting(props) {
             const destItems = [...destColumn.items];
             const [removed] = sourceItems.splice(source.index, 1); //projet dont on voudrais changer le statut
             destItems.splice(destination.index, 0, removed);
-            
             // removed: tache ou projet selctionné
             // destination.droppableId = nouveau statut
-            const IsprojectTask = props?.projectsdata?.projectsTaks;
+
+            SetstatutId( destination.droppableId )
+            const IsprojectTask = projectsdata?.projectsTaks;
             if( ! IsprojectTask )
               update(removed.id, destination.droppableId, removed);
             else{
@@ -212,7 +226,7 @@ export default function Projectlisting(props) {
         };
 
     const [columns, setColumns] = useState({});
-    const [editLink, seteditLink] = useState(props.editLink);
+    const [EditLink, seteditLink] = useState(editLink);
     
   if(!columns ) return (<Loader/>)
   if( columns )
@@ -222,18 +236,20 @@ export default function Projectlisting(props) {
       {
         winReady?<DragDropContext onDragEnd={result=>onDragEnd(result, columns, setColumns )}>
             { 
-              
               Object.entries(columns).map(([id, column])=>{
               var columColor = column.status_color;
               return (<div key={id}>
-                <div className={styles.Col__title}>{column.name}</div>
+                <div className={styles.Col__title}>
+                  <div>{column.name}</div>
+                  <div><FontAwesomeIcon icon={faPlus} 
+                  onClick={(event) => OnclickADDdata(event, columns, id)}/></div>
+                </div>
               <Droppable droppableId={id.toString()} key={id}> 
               { (provided, snapshot) => {
                   return (<div
                         {...provided.droppableProps}  
                         ref={provided.innerRef}
                         style={{ background:snapshot.isDraggingOver? 'lightblue':'#FFF',
-                            
                             width: '200px',
                             height: 'auto',
                             borderRight: '2px solid #fff',
@@ -260,8 +276,8 @@ export default function Projectlisting(props) {
   
                                    >  
                                    {
-                                    <Projectcards item={item}  statutstate={columColor}  editLink={editLink}
-                                      isTasks={props?.projectsdata?.projectsTaks}
+                                    <Projectcards item={item}  statutstate={columColor}  editLink={EditLink}
+                                      isTasks={projectsdata?.projectsTaks}
                                     
                                     />
                                    }

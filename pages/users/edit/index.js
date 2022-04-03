@@ -27,15 +27,13 @@ export default function EditUser(props) {
           </div>
     </div>
   )
-
-
 }
 
-EditUser.getInitialProps = async({ query: { id, isAdd, isEdit } }) => {
+export const getServerSideProps = async({ query: { id, isAdd, isEdit } }) => {
 
   const res = await fetch('https://restcountries.com/v3.1/all')
   const countries = await res.json()
-  return { id , countries}
+  return { props:{id , countries} }
 }
 
 EditUser.getLayout = function getLayout(page) {

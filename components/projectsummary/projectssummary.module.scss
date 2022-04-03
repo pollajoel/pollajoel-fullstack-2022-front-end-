@@ -8,6 +8,10 @@
     background: #1D438A;
     color: #fff;
     width: 100%;
+    &:hover{
+        transition: all 0.3s;
+        background: #1D438A;
+      }
 
     .container{
 
@@ -25,7 +29,7 @@
                 font-weight: bold;
             }
         }
-        &__statut{}
+      
 
     }
 

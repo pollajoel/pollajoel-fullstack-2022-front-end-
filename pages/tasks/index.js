@@ -2,9 +2,6 @@ import React, {useState} from 'react'
 import Projectlisting from '../../components/projectlisting/projectlisting'
 import HomeLayout from '../../layouts/Home/Homelayout'
 import styles from "./task.module.scss"
-import uniqid from 'uniqid'
-import Boutonblue from '../../components/bouton/boutonblue/boutonblue'
-import Link from 'next/link'
 import {useQuery, NetworkStatus} from '@apollo/client'
 import {PROJECT_TASKS} from '../../graphql/query'
 import Loader from '../../components/Loader/loader'
@@ -14,8 +11,12 @@ export default function Tasks({columnsBackenfront, editLink, id}) {
 
   const [modalIsOpen, setIsOpen] = useState(false);
   const [disabledToedit, setdisabledToedit] = useState(false);
-  function openModal(disabledValue) {
+  const [StatutId, SetstatutId]= useState(0);
+
+  
+  function openModal(disabledValue, statutId) {
     setdisabledToedit(disabledValue)
+    SetstatutId( statutId );
     setIsOpen(true);
   }
 
@@ -49,28 +50,21 @@ if( loading) return(<Loader/>)
   if( data )
   return (
     <div className={styles.container__wrapper}>
-    
-    <WindowsForm show={modalIsOpen} onClose={closeModal} projectId={id}/>
-
-        <div className={styles.created__button}>
-            <Boutonblue 
-              name="Nouvelle Tâche"
-              onClick={e=>openModal(true)}
-            />
-        </div>
+    <WindowsForm show={modalIsOpen} onClose={closeModal} projectId={id} StatutId={StatutId}/>
         <div style={{ 'width': '100%'}}>
             <div className={styles.Kanban__board}>
               <Projectlisting 
-              
+              onClick={e=>openModal(true)}
               statutLists={columnsBackenfront} 
               isAdd={boutonaddState}
               editLink = {editLink}
               projectsdata = {data}
-              
+              StatutId= {StatutId}
+              SetstatutId = {SetstatutId}
+              setIsOpen={setIsOpen}
               />
             </div>
         </div>
-       
     </div>
   )
 }

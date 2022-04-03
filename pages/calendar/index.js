@@ -10,8 +10,13 @@ export default function index({data}) {
     },[])
 
   return (
-    <div>
-        {windowsReady?<div className={styles.scheduler__container}><Scheduler events={data}/></div>:null}
+    <div className={styles.calendar__wrapper}>
+        <div className={styles.calendar__block}>
+          {windowsReady?<div className={styles.scheduler__container}><Scheduler events={data}/></div>:null}
+        </div>
+        <div className={styles.user__block}>
+          dddddddddddd
+        </div>
     </div>
   )
 }
@@ -22,8 +27,7 @@ index.getLayout = function getLayout(page) {
 
 index.getInitialProps = async ({ query: { id} }) => {
   const data = [
-    { start_date:'2020-06-10 6:00', end_date:'2021-06-10 8:00', text:'Event 1', id: 1 },
-    { start_date:'2020-06-13 10:00', end_date:'2020-06-13 18:00', text:'Event 2', id: 2 }
+    { StartTime:  new Date(), EndTime: new Date(2022, 0, 11, 12, 0), text:'Event 1', id: 1 },
   ];
   return { data }
 }

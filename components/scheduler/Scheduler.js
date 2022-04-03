@@ -1,44 +1,32 @@
-import React ,{Component} from 'react'
-import 'dhtmlx-scheduler';
-import 'dhtmlx-scheduler/codebase/dhtmlxscheduler_material.css';
+import React, {useEffect, useState} from 'react'
+import {ScheduleComponent, Day, Week, Month, Agenda, Inject,
+EventsettingsModel} from '@syncfusion/ej2-react-schedule'
+import Loader from '../../components/Loader/loader'
 
 
+export default function Scheduler(props){
 
-
-export default class Scheduler extends Component {
-
-    constructor(props){
-        super(props)
-        if (typeof window === 'undefined') {
-            global.window = {}
-        }
+    EventsettingsModel={
+        dataSource: props.events
     }
-    componentDidMount() {
-        
-        const  scheduler = window.scheduler;
-        scheduler.skin = 'material';
-        scheduler.config.header = [
-            'day',
-            'week',
-            'month',
-            'date',
-            'prev',
-            'today',
-            'next'
-        ];
- 
-        const { events } = this.props;
-        scheduler.init(this.schedulerContainer, new Date(2020, 5, 10));
-        scheduler.clearAll();
-        scheduler.parse(events);
-    }
- 
-    render() {
-        return (
-            <div
-                ref={ (input) => { this.schedulerContainer = input } }
-                style={ { width: 'width: 200px', height: '100vh' } }
-            ></div>
-       );
-    }
+    const [windowsReady, setWindowsReady]= useState(false);
+
+    useEffect(() => {
+        setWindowsReady(true)
+    },[])
+
+    
+    return(
+        <div>
+            {windowsReady?<ScheduleComponent currentView="Month"
+                eventSettings={EventsettingsModel}
+            >
+                <Inject services={[Day, Week,Month, Agenda]}/>
+            </ScheduleComponent>:<div>Is Loading...</div>
+            }
+        </div>
+    )
+    
 }
+
+

@@ -14,7 +14,7 @@ const Windows = ({ show, onClose, item ,afterOpenModal, statutType, color}) => {
             contentLabel={item.name}
         >
             <div className={styles.close_btn_ctn}>
-                <h1 style={{ flex: "1 90%" }}>Details</h1>
+                <h1 style={{ "flex": "1 90%", "font-size": "25px" }}>Details</h1>
                 <button className={styles.close_btn} onClick={onClose}>X</button>
             </div>
 
@@ -25,7 +25,7 @@ const Windows = ({ show, onClose, item ,afterOpenModal, statutType, color}) => {
             <div>
                 <div className={styles.percentage__container}>
                     <div className={styles.percentage__values}
-                    >80%</div>
+                    ></div>
                 </div>
                 <div className={styles.pogress__bar}>
                     <div className={styles.pogress__content}
@@ -34,13 +34,15 @@ const Windows = ({ show, onClose, item ,afterOpenModal, statutType, color}) => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className={styles.description__contain}>
                 {item.description}
             </div>
+            <div className={styles.date__container}>
+                <div><strong>date de début:</strong> {item.start_date}</div>
+                <div><strong>date de fin:</strong> {item.end_date}</div>
+            </div> 
             <div>
-                <div>{item.start_date}</div>
-                <div>{item.end_date}</div>
-                <div>{item.statut?.name}</div>
+                <div>statut:  <strong style={{'color':`${color}`}}>{item.statut.name}</strong></div>
             </div>
             <div>
                 <div>Assigné à:  {item?.user?.name}</div>

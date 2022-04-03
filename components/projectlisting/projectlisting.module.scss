@@ -17,9 +17,11 @@
 
     .Col__title{
         padding-top: 5px;
-        text-align: center;
+        margin-bottom: 10px;
         width: 212px;
         font-weight: 700;
+        display: flex;
+        justify-content: space-around;;
     }
     .container__button{ width: 100%;}
     .title{

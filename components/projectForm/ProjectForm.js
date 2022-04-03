@@ -3,6 +3,7 @@ import InputForm from '../form/inputForm/input'
 import {faPlus, faCalendarCheck,faEdit} from '@fortawesome/free-solid-svg-icons'
 import Boutonwhite from '../bouton/boutonwhite/boutonwhite';
 import styles from "./ProjectForm.module.scss"
+import InpuSelect from '../form/select/select';
 import TextareaForm from '../form/textarea/textareaForm';
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
@@ -17,7 +18,6 @@ const [CreateProject] = useMutation(CREATE_PROJECT, {
         router.reload()
     },
     onError: (errors)=>{
-        console.log( "here is errors...")
         console.log( errors )
         console.log( formState )
     }
@@ -79,7 +79,6 @@ const [CreateProject] = useMutation(CREATE_PROJECT, {
                 onChange={(e)=>SetFormState({...formState, start_date:e.target.value })}
                 type="date"
                 value={formState.start_date}
-                min={`${Date.now()}`}
             />
       
             <InputForm 
