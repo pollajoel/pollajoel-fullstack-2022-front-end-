@@ -14,10 +14,7 @@ export default function InputForm(props) {
     {setWindowsIsready?
     <div className={styles.input__container}>
             <div className={styles.icon__container}>
-            <FontAwesomeIcon 
-                icon={props.icon}
-                size="2x"
-            />
+            
             </div>
             <div className={styles.formInpunt__wrapper}>
                 <div className={styles.wrapper__label}>

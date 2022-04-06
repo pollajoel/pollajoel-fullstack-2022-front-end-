@@ -7,6 +7,7 @@ import Link from 'next/dist/client/link'
 import { useQuery } from "@apollo/client";
 import { USERS } from '../../graphql/query'
 import Loader from '../../components/Loader/loader'
+import uniqid from 'uniqid'
 
 export default function UsersListe(props) {
   
@@ -24,17 +25,16 @@ export default function UsersListe(props) {
                 pathname:"users/create",
                 query: { isEdit: false, isAdd: true },
               }}
-          >
-            <Boutonblue 
-              name="Ajouter un compte"
-              
-            />
+            >
+            <a href={"users/create"}>
+              <Boutonblue  name="Ajouter un compte"/>
+            </a>
           </Link>
         </div>
         <div className={styles.user__list}>
               {
                 data.users.map((user)=><Usercard
-                    user={user}
+                    user={user} key={uniqid()}
                   />)
               }
           </div>

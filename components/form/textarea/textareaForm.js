@@ -9,13 +9,14 @@ export default function TextareaForm(props) {
             id={props.name}
             name={props.name} 
             placeholder={props.description}
-            value={props.value}
+           
             rows={props.rows}
             cols={props.cols}
-            onChange={props.onChange}
+            onChange={e=>props.onChange}
            
             
         >
+          {props.default}
         </textarea>
     </div>
   )

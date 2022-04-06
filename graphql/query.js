@@ -1,13 +1,13 @@
 import { gql } from '@apollo/client';
 
 export const GET_ME = gql`
-	query{ getMe{ is_admin, id, name, firstname, email, password, postal_code, country, profil_image}}
+	query{ getMe{ is_admin, id, name, firstname, email, password, postal_code, profil_image}}
 `
 export const USERS = gql`
-	query{ users{id, name, firstname, email, phone, profil_image, password,city, country, postal_code}}
+	query{ users{id, name, firstname, email, phone, profil_image, password,city, postal_code}}
 `
 export const USER = gql`
-      query user($id: ID!){ user(id:$id){id, name, firstname, postal_code, email, phone, password, phone, city, country, profil_image}}
+      query user($id: ID!){ user(id:$id){id, name, firstname, postal_code, email, phone, password, phone, city, profil_image}}
     `
 export const STATUS = gql`
   query { statuts{id, name, description, color} }

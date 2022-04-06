@@ -10,9 +10,11 @@ export default function Userscard() {
         });
 
    if( data )
-        return (<Projectssummary size={data.users.length} Icon={faUserAlt}
+        return (<Projectssummary size={data?.users?.length} Icon={faUserAlt}
         description="Nombres d'utilisateurs"
         />)
   if( loading )
         return <Loader/>
+  if( errors )
+            return <div>errors...</div>
 }

@@ -14,7 +14,7 @@ const Windows = ({ show, onClose, item ,afterOpenModal, statutType, color}) => {
             contentLabel={item.name}
         >
             <div className={styles.close_btn_ctn}>
-                <h1 style={{ "flex": "1 90%", "font-size": "25px" }}>Details</h1>
+                <h1 style={{ "flex": "1 90%", "fontSize": "25px" }}>Details</h1>
                 <button className={styles.close_btn} onClick={onClose}>X</button>
             </div>
 
@@ -29,7 +29,7 @@ const Windows = ({ show, onClose, item ,afterOpenModal, statutType, color}) => {
                 </div>
                 <div className={styles.pogress__bar}>
                     <div className={styles.pogress__content}
-                        style={{'background-color':`${color}`}}
+                        style={{'backgroundColor':`${color}`}}
                     >
                     </div>
                 </div>

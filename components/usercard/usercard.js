@@ -42,10 +42,10 @@ export default function Usercard(props) {
       {
         winReady?<div className={styles.picture__contain}
       style={{
-      'background-image':"url("+`${props.user.profil_image}`+")",
-      "background-size": "contain",
-      "background-repeat": "no-repeat",
-      "background-position":"center"
+      "backgroundImage":"url("+`${props.user.profil_image}`+")",
+      "backgroundSize": "contain",
+      "backgroundRepeat": "no-repeat",
+      "backgroundPosition":"center"
     }}
       />:<div className={styles.picture__contain}/>
   }
@@ -65,7 +65,9 @@ export default function Usercard(props) {
                       query: { id:props.user.id },
                     }}
                   >
+                    <a href={"users/edit"}>
                       <FontAwesomeIcon   icon={faEdit} size="2x" className={styles.icon}/>
+                    </a>
                   </Link>
                 </div>
           </div>

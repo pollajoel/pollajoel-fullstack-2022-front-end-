@@ -8,43 +8,46 @@ import InputForm from "../form/inputForm/input";
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import AssignTo from "../assignTo/assignTo";
 import {useMutation} from '@apollo/client'
-import {CREATE_PROJECT} from '../../graphql/mutation'
+import {UPDATETASK_ALL} from '../../graphql/mutation'
 import {useRouter} from 'next/router'
 Modal.setAppElement("#__next");
-const WindowsFormProject = ({ show, onClose, item ,afterOpenModal, projectId, StatuId}, props) => {
+const WindowsFormTaskEdit  = ({ show, onClose, item ,afterOpenModal, projectId, StatuId}, props) => {
     
     const router = useRouter()
-    const [CreateProject] = useMutation(CREATE_PROJECT, {
+    const [UpdateProject]=useMutation(UPDATETASK_ALL,{
         onCompleted: (data)=>{
+            //console.log( "Token: "+data )
+            //localStorage.setItem("Token",data.authentification.token )
+            //router.push("/")
             router.reload()
         },
         onError: (errors)=>{
-            console.log( "here is errors...")
             console.log( errors )
-            console.log( formState )
         }
     })
     
      const [formState, SetFormState]=useState({
-        title: props.task?.name || "",
-        description: props.task?.description || "",
-        start_date: props.task?.start_date || "",
-        end_date: props.task?.end_date || "",
+        name: item.name || "",
+        description: item.description || "",
+        start_date: item.start_date || "",
+        end_date: item.end_date || "",
         statutId: Number.parseInt(StatuId),
-        userId: props.task?.userId || "",
+        userId: item.userId || "",
      })
      const [windowReady, SetwindowReady]= useState(false)
      useEffect(() => { SetwindowReady( true )},[])
      
      async function ADDprojectORtask(event){
         event.preventDefault();
-            await CreateProject({
-                variables:{projectdataInput:{
+            await UpdateProject({
+                variables:{
+                    id:  Number.parseInt(item.id),
+                    updatetaskInput:{
                     start_date: formState.start_date, 
                     end_date: formState.end_date, 
-                    title: formState.title,
+                    name: formState.name,
                     description: formState.description,
-                    statutId: Number.parseInt(StatuId),
+                    statutId: Number.parseInt(item.statut.id),
                     userId: Number.parseInt(formState.userId)
                 }},
                 context:{headers:{authorization:typeof window !== 'undefined'?localStorage.getItem("Token"):""}}
@@ -60,7 +63,7 @@ const WindowsFormProject = ({ show, onClose, item ,afterOpenModal, projectId, St
             onAfterOpen={afterOpenModal}
             contentLabel="Label">
             <div className={styles.close_btn_ctn}>
-                <h1 style={{ flex: "1 90%", "font-size":"25px" }}>Ajouter un projet {StatuId}</h1>
+                <h1 style={{ flex: "1 90%", "fontSize":"25px" }}>Modifier-{item.name}</h1>
                 <button className={styles.close_btn} onClick={onClose}>X</button>
             </div>
             <div>
@@ -70,11 +73,11 @@ const WindowsFormProject = ({ show, onClose, item ,afterOpenModal, projectId, St
                         <div className={styles.date__input}>
                             <InputForm 
                                 label="nom du projet*"
-                                name="title"
+                                name="name"
                                 error={true}
-                                id="title"
-                                onChange={(e)=>SetFormState({...formState, title:e.target.value })}
-                                value={formState.title}
+                                id="name"
+                                onChange={(e)=>SetFormState({...formState, name:e.target.value })}
+                                value={formState.name}
                                 type="text"
                             />
                         </div>
@@ -120,12 +123,12 @@ const WindowsFormProject = ({ show, onClose, item ,afterOpenModal, projectId, St
 
                     <div className={styles.current__statut}>
                         <TextareaForm
-                    
                             rows={5}
                             label="Description"
                             type="text"
                             name="description"
                             error={true}
+                            default={formState.description}
                             onChange={(e)=>SetFormState({...formState, description:e.target.value })}
                         />
                     </div>
@@ -140,4 +143,4 @@ const WindowsFormProject = ({ show, onClose, item ,afterOpenModal, projectId, St
     );
 };
 
-export default WindowsFormProject;
+export default WindowsFormTaskEdit;

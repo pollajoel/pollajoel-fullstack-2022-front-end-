@@ -8,19 +8,23 @@ export default function InpuSelect(props) {
         </div>
         <select name={props.name} className={styles.select__wrapper__list}
           onChange={(event) => props.onChange(event)}
-        >
+          defaultValue=""
+          >
+            <option value="" disabled>
+              {props.description}
+            </option>
 
-            <option value="" selected disabled hidden>{props.description}</option>
             {props?.Options?.map( (item, index) =>{
             
-              if( props.country)
-                return <option key={index}
-                    default={props.defautValue || ""}
-                >{ item.translations.fra.common}</option> 
               if( props.assignto)
-                return (<option value={item.id}>{item.name}</option>)
+                return (<option value={item.id}
+                  key={item.id}
+                >{item.name}</option>)
               if( props.statutComp )
-                return (<option value={item.id}>{item.name}</option>)
+                return (<option 
+                  value={item.id}
+                  key={item.id}
+                >{item.name}</option>)
               
             })
             }

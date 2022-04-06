@@ -271,13 +271,17 @@ export default function Projectlisting({
                                      ref={provided.innerRef}  
                                      {...provided.draggableProps}  
                                      {...provided.dragHandleProps}
-                                     isDragging={snapshot.isDragging && !snapshot.isDropAnimating} 
+                                     
                                      style={getStyle(provided.draggableProps.style, snapshot)}
   
                                    >  
                                    {
-                                    <Projectcards item={item}  statutstate={columColor}  editLink={EditLink}
+                                    <Projectcards 
+                                      item={item}  
+                                      statutstate={columColor}  
+                                      editLink={EditLink}
                                       isTasks={projectsdata?.projectsTaks}
+                                      StatuId={StatuId}
                                     
                                     />
                                    }

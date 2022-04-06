@@ -25,7 +25,6 @@ export default function UserForm(props) {
                email: "",
                phone: "",
                city: "",
-               country: "",
                postal_code: "",
                profil_image: ""
            })
@@ -50,7 +49,6 @@ export default function UserForm(props) {
                 email: data.updateUser.email,
                 phone: data.updateUser.phone,
                 city: data.updateUser.city,
-                country: data.updateUser.country,
                 postal_code: data.updateUser.postal_code,
                 profil_image: data.updateUser.profil_image
             })
@@ -71,7 +69,6 @@ export default function UserForm(props) {
     email: props?.user?.email || "",
     phone: props?.user?.phone || "",
     city: props?.user?.city || "",
-    country: props?.user?.country || "",
     postal_code: props?.user?.postal_code || "",
     profil_image: props?.user?.profil_image || ""
  })
@@ -244,14 +241,7 @@ export default function UserForm(props) {
             type="email"
         />
 
-        <InpuSelect 
-            error={props?.user?.country}
-            success={props?.user?.country}
-            label="Pays"
-            defautValue={formState.country}
-            description="Selectionner un pays"
-            Options={props.countries}
-        />
+        
         
         <InputForm 
            

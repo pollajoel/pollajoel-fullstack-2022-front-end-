@@ -13,7 +13,7 @@ export const AUTHENTICATE_USER = gql `
 export const UPDATE_USER = gql `
     mutation updateUser($id:ID!, $updtateUserinput: updateuserInput!){
         updateUser(id:$id, updtateUserinput:$updtateUserinput){
-            is_admin, name, firstname, postal_code, email, phone, password, phone, city, country, profil_image
+            is_admin, name, firstname, postal_code, email, phone, password, phone, city, profil_image
         }
     }
 `
@@ -102,5 +102,19 @@ export const DELETE_TASK = gql`
 export const DELETE_PROJECT = gql`
     mutation deleteproject($id:ID!){
         deleteproject(id:$id)
+    }
+`
+
+export const UPDATEPROJECT_ALL=gql`
+    mutation  updateproject($id:ID!, $projectInputUpdate:projectInputUpdate)
+    {
+        updateproject(id:$id, projectInputUpdate:$projectInputUpdate){id} 
+    }
+`
+
+export const UPDATETASK_ALL=gql`
+    mutation  updatetask($id:ID!, $updatetaskInput:updatetaskInput)
+    {
+        updatetask(id:$id, updatetaskInput:$updatetaskInput){id} 
     }
 `

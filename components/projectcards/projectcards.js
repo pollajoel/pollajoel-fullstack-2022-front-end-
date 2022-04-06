@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import styles from './projectcards.module.scss'
 import Windows from '../windows/windows'
-import 
+import WindowsFormProjectedit from '../windowsFormProjectEdit/WindowsFormProjectedit'
 import Link from 'next/dist/client/link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faEye, faEdit, faTrashAlt, faTasks} from '@fortawesome/free-solid-svg-icons'
@@ -9,6 +9,7 @@ import 'balloon-css';
 import {useMutation} from '@apollo/client'
 import { DELETE_TASK, DELETE_PROJECT} from '../../graphql/mutation'
 import {useRouter} from 'next/router'
+import WindowsFormTaskEdit from '../windowsFormTaskEdit/WindowsFormProjectedit'
 export default function Projectcards(props) {
  const router = useRouter()
   const [deleteTask] = useMutation(DELETE_TASK,{
@@ -30,7 +31,10 @@ export default function Projectcards(props) {
   })
   
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalEditIsopen, SetEditIsopen] = useState(false)
   const [disabledToedit, setdisabledToedit] = useState(false);
+  const [modalTaskopen, setTaskOpen]= useState(false)
+
   const Deleted= async(id, type)=>{
 
       if ( type =="tasks" ) {
@@ -50,6 +54,25 @@ export default function Projectcards(props) {
       }
   }
 
+
+
+  function openModalEditTask(){
+    setTaskOpen( true )
+  }
+  function closeModalEditTask(){
+    setTaskOpen(false)
+  }
+
+
+
+  function openModalEditProject(){
+    SetEditIsopen( true )
+  }
+  function closeModalEditProject(){
+    SetEditIsopen(false)
+  }
+
+
   function openModal(disabledValue) {
     setdisabledToedit(disabledValue)
     setIsOpen(true);
@@ -68,7 +91,22 @@ export default function Projectcards(props) {
 
 
   return (
+
+    
     <div>
+      <WindowsFormTaskEdit 
+        show={modalTaskopen}
+        onClose={closeModalEditTask}
+        item={props.item}
+        StatuId={props.StatuId}
+    
+    />
+      <WindowsFormProjectedit 
+        show={modalEditIsopen} 
+        onClose={closeModalEditProject} 
+        item={props.item}
+        StatuId={props.StatuId}
+      />
       <Windows show={modalIsOpen} onClose={closeModal} item={props.item} 
       statutType={disabledToedit}
       color={props.statutstate}
@@ -77,7 +115,7 @@ export default function Projectcards(props) {
           <div className={styles.project__containerbarre}>
               <div 
                 style={
-                  {"background-color":`${props.statutstate}`, width:"20%", height:"6px"}
+                  {"backgroundColor":`${props.statutstate}`, width:"20%", height:"6px"}
                 }>
               </div>
           </div>
@@ -92,9 +130,17 @@ export default function Projectcards(props) {
                     <div aria-label="Modifier" data-balloon-pos="down">
                         {
                          
-                          <Link href={{pathname:`${props.editLink}`, query:{id:`${props.item.id}`}}}>
-                              <FontAwesomeIcon  icon={faEdit} size="2x"/>
-                          </Link>
+                        !props.isTasks?<FontAwesomeIcon  
+                            icon={faEdit} size="2x"
+                            onClick={(e)=>openModalEditProject()
+                          }
+                        
+                        />:<FontAwesomeIcon  
+                            icon={faEdit} 
+                            size="2x"
+                            onClick={e=>openModalEditTask()
+                          }
+                            />
                       }
                       </div>
                     
@@ -109,10 +155,9 @@ export default function Projectcards(props) {
                   
                   </div>
                     {
-                      !props.isTasks?<div className={styles.task__icon} aria-label={`voir les tâches`} data-balloon-pos="down"><Link 
-                      href={{pathname:`${"/tasks"}`, query:{id:`${props.item.id}`}}}
-                      >
-                      <FontAwesomeIcon  icon={faTasks} size="4x"/>  
+                      !props.isTasks?<div className={styles.task__icon} aria-label={`voir les tâches`} data-balloon-pos="down">
+                        <Link href={{pathname:`${"/tasks"}`, query:{id:`${props.item.id}`}}}>
+                          <a href={"/tasks"}><FontAwesomeIcon  icon={faTasks} size="4x"/></a>
                       </Link></div>:null  
                     }
               </div>

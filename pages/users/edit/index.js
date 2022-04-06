@@ -31,8 +31,9 @@ export default function EditUser(props) {
 
 export const getServerSideProps = async({ query: { id, isAdd, isEdit } }) => {
 
-  const res = await fetch('https://restcountries.com/v3.1/all')
-  const countries = await res.json()
+  //const res = await fetch('https://restcountries.com/v3.1/all')
+  //const countries = await res.json()
+  const countries = [];
   return { props:{id , countries} }
 }
 
