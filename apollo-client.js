@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache} from "@apollo/client";
 const Client = new ApolloClient({
     ssrMode: typeof window === 'undefined',
     //link: authLink.concat(Linkhttp),
-    uri: 'http://localhost:4000/graphql',
+    uri: 'https://schedulcalendar.herokuapp.com/graphql',
     cache: new InMemoryCache(),
     onError: ({ graphQLErrors, networkError, operation, forward }) => {
       if (graphQLErrors) {

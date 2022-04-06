@@ -4,10 +4,6 @@ import HomeLayout from '../../layouts/Home/Homelayout'
 import styles from './index.module.scss'
 
 export default function index({data}) {
-    const [windowsReady, setWindowsReady]= useState(false)
-    useEffect(()=>{
-        setWindowsReady(true)
-    },[])
 
   return (
     <div className={styles.calendar__wrapper}>
