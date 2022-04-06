@@ -6,7 +6,7 @@ import {faPlus, faEdit} from '@fortawesome/free-solid-svg-icons'
 import Boutonwhite from '../bouton/boutonwhite/boutonwhite';
 import styles from "./editprojectsForm.module.scss"
 
-export default function ditprojectsForm(props) {
+export default function DitprojectsForm(props) {
 
  const [formState, SetFormState]=useState({
     title: props.title || "",

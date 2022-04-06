@@ -3,12 +3,12 @@ import Scheduler from '../../components/scheduler/Scheduler'
 import HomeLayout from '../../layouts/Home/Homelayout'
 import styles from './index.module.scss'
 
-export default function index({data}) {
-
+export default function Index({data}) {
+ 
   return (
     <div className={styles.calendar__wrapper}>
         <div className={styles.calendar__block}>
-          {windowsReady?<div className={styles.scheduler__container}><Scheduler events={data}/></div>:null}
+          <div className={styles.scheduler__container}><Scheduler events={data}/></div>
         </div>
         <div className={styles.user__block}>
           dddddddddddd
@@ -17,11 +17,11 @@ export default function index({data}) {
   )
 }
 
-index.getLayout = function getLayout(page) {
+Index.getLayout = function getLayout(page) {
   return (<HomeLayout>{page}</HomeLayout>)
 }
 
-index.getInitialProps = async ({ query: { id} }) => {
+Index.getInitialProps = async ({ query: { id} }) => {
   const data = [
     { StartTime:  new Date(), EndTime: new Date(2022, 0, 11, 12, 0), text:'Event 1', id: 1 },
   ];

@@ -2,6 +2,7 @@ import React from 'react'
 import HomeLayout from '../../../layouts/Home/Homelayout'
 import styles from "./create.module.scss"
 import UserForm from "../../../components/userForm/userForm"
+import Loader from '../../../components/Loader/loader'
 export default function CreateUser(props) {
 
   if( !props.countries)

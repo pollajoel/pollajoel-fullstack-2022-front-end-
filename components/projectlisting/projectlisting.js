@@ -103,8 +103,10 @@ export default function Projectlisting({
  const [statuts, setAstatuts] = useState([])
   const [winReady, setwinReady] = useState(false);
       useEffect(() => {
+
         LoadData();
-        }, []);
+
+        });
 
       const LoadData = async()=>{
 
@@ -115,9 +117,9 @@ export default function Projectlisting({
           method: 'GET',
           headers: myHeaders,
         };
-        const res = await fetch("http://localhost:4000/api/v1/projects", requestOptions)
+        const res = await fetch("https://schedulcalendar.herokuapp.com/api/v1/projects", requestOptions)
         const Allprojects = await res.text()
-        const resstat = await fetch("http://localhost:4000/api/v1/statuts", requestOptions)
+        const resstat = await fetch("https://schedulcalendar.herokuapp.com/api/v1/statuts", requestOptions)
         const allstatuts = await resstat.text()
         const allstat = JSON.parse(allstatuts)
         setAstatuts( allstat )

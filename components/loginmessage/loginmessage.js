@@ -23,7 +23,7 @@ export default function Loginmessage() {
               <h1>Bienvenu 
                   {windowsReady?<span>  {data.getMe.firstname}</span>:null}
               </h1>
-              <p>Faisons de notre mieux aujourd'hui</p>
+              <p>Faisons de notre mieux aujourd`&lsquo;`hui</p>
           </div>
           <div>
               <Searchbar></Searchbar>

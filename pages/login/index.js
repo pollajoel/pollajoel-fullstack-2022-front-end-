@@ -113,7 +113,7 @@ export default function Index() {
                         </div>
                         <div className={styles.loginButton__createaccount}>
                             <Link href="/register">
-                                <a href="/register">
+                                <a>
                                 <Boutonwhite name="Créer un compte" icon={faUserEdit}/>
                                 </a>
                             </Link>

@@ -213,7 +213,7 @@ export default function Index() {
                             />
                         </div>
                         <div className={styles.loginButton__createaccount}>
-                            <Link href={"/login"} >
+                            <Link href="/login" >
                                 <a>
                                     <Boutonwhite name="Se connecter" icon={faUser}/>
                                 </a>

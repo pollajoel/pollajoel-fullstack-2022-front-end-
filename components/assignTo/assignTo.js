@@ -6,8 +6,7 @@ export default function AssignTo(props) {
 
     const [userdata, SetUserdata] = useState([])
     useEffect(()=>{
-        if( data )
-        SetUserdata( data )
+        
     },[])
 
     const {data, loading, errors} = useQuery(USERS,{

@@ -22,7 +22,7 @@ export default function Homemenu() {
     <div className={styles.homemenu__container}>
 
       <div className={styles.logo}>
-        <Link href="/">
+        <Link href="/" passHref>
           <Image
             src={logo}
             alt="Picture of the author"
@@ -36,7 +36,7 @@ export default function Homemenu() {
                   <ul className={styles.mainmenu__list}>
                       <li className={styles.currentUserPicture}>
                           
-                          <Link href="/">
+                          <Link href="/" passHref>
                           <Image
                                 src={user}
                                 alt="Picture of the author"
@@ -53,7 +53,7 @@ export default function Homemenu() {
                             {
                                 menu.map( 
                                 (item)=><li key={uniqid()} className="nav__item">
-                                            <Link href={item.link}>
+                                            <Link href={item.link} passHref>
                                                 <a className={styles.nav__link}>{item.title}</a>
                                             </Link>
                                         </li>)

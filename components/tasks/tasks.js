@@ -28,6 +28,7 @@ export default function Tasks() {
                 <div className={styles.end__date}>end_date</div>
                 <div className={styles.picture__container}>
                     <Image 
+                             alt="image"
                             src={defaultImage} 
                             width={20} 
                             height={20}
