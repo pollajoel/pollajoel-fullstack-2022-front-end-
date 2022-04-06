@@ -11,7 +11,7 @@ import { useMutation } from "@apollo/client";
 import { AUTHENTICATE_USER } from '../../graphql/mutation'
 import { useRouter } from 'next/router'
 
-export default function index() {
+export default function Index() {
     const router = useRouter()
     const [Formstate, SetFormstate] = useState({
         email:"",

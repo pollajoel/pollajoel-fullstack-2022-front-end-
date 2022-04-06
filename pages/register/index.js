@@ -11,7 +11,7 @@ import { useMutation } from "@apollo/client";
 import { CREATE_USER } from '../../graphql/mutation'
 
 
-export default function index() {
+export default function Index() {
 
    const [formError, setFormError]= useState({
        nameControl:{

@@ -29,7 +29,7 @@ export default function Tasks({columnsBackenfront, editLink, id}) {
     subtitle.style.color = '#f00';
   }
 
-      const { loading, error, data, refetch, networkStatus } = useQuery(
+      const { loading, error, data} = useQuery(
         PROJECT_TASKS,
         {
           variables: {projectId:Number.parseInt(id)},
@@ -43,7 +43,6 @@ const [boutonaddState, SetboutaddState] = useState(false)
 const setAdd= ( ) =>{
     SetboutaddState(true)
 }
-if (networkStatus === NetworkStatus.refetch) return <div>'Refetching!'</div>
 if( error) return <div>An error occur...</div>
 if( loading) return(<Loader/>)
   

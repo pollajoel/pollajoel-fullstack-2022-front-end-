@@ -9,7 +9,7 @@ import Boutonwhite from '../../components/bouton/boutonwhite/boutonwhite'
 import Link from 'next/link'
 
 
-export default function index() {
+export default function Index() {
   return (
     <div className={styles.login__wrapper}>
         <div className={styles.login__image}></div>
