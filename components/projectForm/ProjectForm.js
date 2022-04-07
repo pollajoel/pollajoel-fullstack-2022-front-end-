@@ -3,13 +3,13 @@ import InputForm from '../form/inputForm/input'
 import {faPlus, faCalendarCheck,faEdit} from '@fortawesome/free-solid-svg-icons'
 import Boutonwhite from '../bouton/boutonwhite/boutonwhite';
 import styles from "./ProjectForm.module.scss"
-import InpuSelect from '../form/select/select';
+
 import TextareaForm from '../form/textarea/textareaForm';
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import {CREATE_PROJECT} from '../../graphql/mutation'
-import AssignTo from '../statutComponentList/assignTo.js'
-import StatutComponent from '../assignTo/StatutComponent.js'
+import AssignTo from '../statutComponentList/assignTo'
+import StatutComponent from '../assignTo/StatutComponent'
 
 export default function ProjectForm(props) {
 const router = useRouter()
