@@ -9,7 +9,7 @@ import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import {CREATE_PROJECT} from '../../graphql/mutation'
 import AssignTo from '../statutComponentList/assignTo'
-import StatutComponent from '../assignTo/StatutComponent'
+import StatutComponent from '../assignTo/StatutComponent.js'
 
 export default function ProjectForm(props) {
 const router = useRouter()
