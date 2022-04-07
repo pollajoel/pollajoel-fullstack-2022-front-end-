@@ -3,7 +3,6 @@ import Modal from "react-modal";
 import Boutonwhite from "../bouton/boutonwhite/boutonwhite";
 import TextareaForm from '../form/textarea/textareaForm';
 import styles from './windows.module.scss'
-import StatutComponent from '../assignTo/statutComponent'
 import InputForm from "../form/inputForm/input";
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import AssignTo from "../statutComponentList/assignTo"
