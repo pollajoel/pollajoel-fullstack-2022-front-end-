@@ -103,7 +103,7 @@ export default function Projectlisting({
  const [statuts, setAstatuts] = useState([])
   const [winReady, setwinReady] = useState(false);
       useEffect(() => {
-
+        setwinReady(true)
         LoadData();
 
         });
