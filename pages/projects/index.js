@@ -40,13 +40,14 @@ const {data, loading, errors} = useQuery(TASKS,{
 
 useEffect(() => {
   setWindowsReady(true)
-},[])
+},[windowsReady])
 const setAdd= ( ) =>{
     SetboutaddState(true)
 }
   
-  if(loading) return(<Loader/>)
-  if(data)
+  if(loading || !windowsReady) return(<Loader/>)
+  if(data && !windowsReady) return <Loader/>
+  if(data && windowsReady)
   return (
     <div className={styles.container__wrapper}>
        <WindowsFormProject show={modalIsOpen} onClose={closeModal} StatuId={StatuId}/>

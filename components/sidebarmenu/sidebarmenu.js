@@ -24,7 +24,7 @@ export default function Sidebarmenu() {
             <ul className={styles.nav__list}>
                 <li className={styles.nav__logo}>
                       <Link href="/">
-                            <a>
+                            <a href="/">
                                 <Image
                                   src={"/uploads/logo.JPG"}
                                   alt="logo"
