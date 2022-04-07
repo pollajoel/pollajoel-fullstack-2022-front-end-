@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styles from './register.module.scss'
-import logo from '../../public/uploads/logo.jpg'
+import logo from '../../public/uploads/logo.JPG'
 import Image from 'next/image'
 import InputForm from '../../components/form/inputForm/input'
 import {faLock, faUser, faEnvelope} from '@fortawesome/free-solid-svg-icons';
