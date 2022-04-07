@@ -132,7 +132,7 @@ export default function RolesList(props) {
             seteditsatet( tab );
         }
         Initstate();
-    },[])
+    })
 
   return (
     <div className={styles.container__wrapper}>
