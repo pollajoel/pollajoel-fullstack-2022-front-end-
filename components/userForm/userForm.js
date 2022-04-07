@@ -203,18 +203,7 @@ export default function UserForm(props) {
             isAdd={props.isAdd}
             onChange={(e)=>SetFormState({...formState, phone:e.target.value })}
             />
-        {
-            windowReady?
-            <div className={styles.buton__submit}>
-                { props.isAdd==1?<Boutonwhite icon={faPlus} name="Ajouter"
-                    onClick={(e)=>Add(e)}
-                
-                />:null}
-                {  props.isEdit==1?<Boutonwhite icon={faEdit} name="Confirmer"
-                    onClick={(e)=>Update(e)}
-                />:null}
-            </div>:null
-        }
+        
     </div>
 
 
@@ -272,6 +261,19 @@ export default function UserForm(props) {
                 </div>
             </div>
         </div>
+
+        {
+            windowReady?
+            <div className={styles.buton__submit}>
+                { props.isAdd==1?<Boutonwhite icon={faPlus} name="Ajouter"
+                    onClick={(e)=>Add(e)}
+                
+                />:null}
+                {  props.isEdit==1?<Boutonwhite icon={faEdit} name="Confirmer"
+                    onClick={(e)=>Update(e)}
+                />:null}
+            </div>:null
+        }
     
 
     </div>

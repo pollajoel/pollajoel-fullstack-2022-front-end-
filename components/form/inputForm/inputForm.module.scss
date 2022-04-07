@@ -10,7 +10,6 @@
     .icon__verified{color:green; font-size: larger;}
     .icon__error{color:red; font-size: larger;}
     .icon__container{
-        width: 10%;
         svg{
             font-size: larger;
         }
@@ -35,7 +34,8 @@
                     border-radius: 5px;
                     padding: 7px;
                     margin-top: 3px;
-                    width: 70%;
+                    width: 85%;
+                    height: 20px;
                 }
             }
         }

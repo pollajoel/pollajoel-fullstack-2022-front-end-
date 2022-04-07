@@ -131,7 +131,7 @@ export default function RolesList(props) {
     useEffect(() => {
         setWindowsIsready(true)
         Initstate();
-    },[windowsIread])
+    },[Initstate])
 
   return (
     <div className={styles.container__wrapper}>
