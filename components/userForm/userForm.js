@@ -120,14 +120,16 @@ export default function UserForm(props) {
      if (e.target.files && e.target.files[0])
         {
             var formdata = new FormData()
-            formdata.append("file", e.target.files[0], e.target.value);
+            formdata.append("fileToUpload", e.target.files[0], e.target.value);
             var requestOptions = { method: 'POST',body: formdata,};
-            fetch("https://main--animated-valkyrie-d4be36.netlify.app/api/upload", requestOptions)
+            fetch("https://wakawakacar.com/upload.php", requestOptions)
             .then(response => response.text())
             .then(result =>{
                 if( result){ 
+                   
                     const data = JSON.parse(result)
-                    SetFormState({...formState,profil_image:data.files.originalname })
+                    console.log( data )
+                    SetFormState({...formState,profil_image:data.imagelink })
                 }
             })
             .catch(error => console.log('error', error));

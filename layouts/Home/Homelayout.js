@@ -34,7 +34,7 @@ export default function Homelayout({children}) {
       <div className={styles.home__container}>
       <div className={styles.user__image}>
             <div className={styles.menu__container} style={{borderRadius: '50%', overflow: 'hidden', border:'1px solid #e6e6e6'}}>
-                {data?<Image src={data.getMe.profil_image!=""?"/"+data.getMe.profil_image:defaultImage} width={40} height={40}/>:null}
+                {data?<Image src={data.getMe.profil_image} width={40} height={40}/>:null}
                 {loading?<Image src={defaultImage} width={40} height={40}/>:null}
                 
                 <ul className={styles.user__menu}>
