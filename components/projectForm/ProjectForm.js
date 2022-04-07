@@ -8,7 +8,7 @@ import TextareaForm from '../form/textarea/textareaForm';
 import {useMutation} from '@apollo/client'
 import {useRouter} from 'next/router'
 import {CREATE_PROJECT} from '../../graphql/mutation'
-import AssignTo from '../assignTo/assignTo.js'
+import AssignTo from '../statutComponentList/assignTo.js'
 import StatutComponent from '../assignTo/StatutComponent.js'
 
 export default function ProjectForm(props) {
