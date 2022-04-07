@@ -303,7 +303,7 @@ export default function Projectlisting({
                 </div>)
               })
             }  
-        </DragDropContext>:null
+        </DragDropContext>:<Loader/>
       }
     </div>
     </div>)
