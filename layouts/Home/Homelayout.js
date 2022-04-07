@@ -6,7 +6,6 @@ import defaultImage from "../../public/uploads/user.png"
 import Loginmessage from '../../components/loginmessage/loginmessage'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faBell} from '@fortawesome/free-solid-svg-icons'
-import ClientOnly from '../../components/clientOnly/clientonly'
 import LoginUsername from '../../components/loginUsername/loginUsername'
 import { useQuery } from "@apollo/client";
 import {GET_ME} from '../../graphql/query'
@@ -27,12 +26,9 @@ export default function Homelayout({children}) {
 
       <div className={styles.container__menu}> <Sidebarmenu/> </div>
       <div className={styles.container__content}>
-        <ClientOnly>
           <Loginmessage
             user={data}
           ></Loginmessage>  
-        </ClientOnly> 
-        
         <div>{children}</div> 
       </div>
       <div className={styles.home__container}>
