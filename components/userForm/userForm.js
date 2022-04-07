@@ -122,7 +122,7 @@ export default function UserForm(props) {
             var formdata = new FormData()
             formdata.append("file", e.target.files[0], e.target.value);
             var requestOptions = { method: 'POST',body: formdata,};
-            fetch("http://localhost:3005/api/upload", requestOptions)
+            fetch("https://pollajoel-fullstack-2022-front-end.vercel.app/api/upload", requestOptions)
             .then(response => response.text())
             .then(result =>{
                 if( result){ 
