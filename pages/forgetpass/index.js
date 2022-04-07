@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './forgetpass.module.scss'
-import logo from '../../public/uploads/logo.jpg'
+import logo from '../../public/uploads/logo.JPG'
 import Image from 'next/image'
 import InputForm from '../../components/form/inputForm/input'
 import {faUser, faEnvelope} from '@fortawesome/free-solid-svg-icons';
