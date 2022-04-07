@@ -124,6 +124,7 @@ export default function RolesList(props) {
     
     useEffect(() => {
         setWindowsIsready(true)
+        
         const Initstate = ()=>{
             let tab =[]
             for( let i=0; i<props.roles.length; i++){
@@ -132,7 +133,7 @@ export default function RolesList(props) {
             seteditsatet( tab );
         }
         Initstate();
-    },[props.roles])
+    },[props.roles,windowsIread])
 
   return (
     <div className={styles.container__wrapper}>
