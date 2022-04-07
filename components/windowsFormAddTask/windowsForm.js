@@ -6,7 +6,7 @@ import styles from './windows.module.scss'
 import StatutComponent from '../assignTo/StatutComponent.js'
 import InputForm from "../form/inputForm/input";
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
-import AssignTo from "../assignTo/assignTo";
+import AssignTo from "../statutComponentList/assignTo"
 import {useQuery} from '@apollo/client'
 import {useMutation} from '@apollo/client'
 import {CREATE_TASK} from '../../graphql/mutation'
