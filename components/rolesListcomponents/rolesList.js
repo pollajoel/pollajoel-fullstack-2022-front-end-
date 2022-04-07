@@ -92,13 +92,7 @@ export default function RolesList(props) {
     })
     const [windowsIread, setWindowsIsready]=useState(false)
     const [ editstate, seteditsatet]=useState([])
-    const Initstate = ()=>{
-        let tab =[]
-        for( let i=0; i<props.roles.length; i++){
-            tab.push(false)
-        }
-        seteditsatet( tab );
-    }
+    
 
     const ActiveEdit = (e,index)=>{
         
@@ -130,8 +124,15 @@ export default function RolesList(props) {
     
     useEffect(() => {
         setWindowsIsready(true)
+        const Initstate = ()=>{
+            let tab =[]
+            for( let i=0; i<props.roles.length; i++){
+                tab.push(false)
+            }
+            seteditsatet( tab );
+        }
         Initstate();
-    },[Initstate])
+    },[])
 
   return (
     <div className={styles.container__wrapper}>
